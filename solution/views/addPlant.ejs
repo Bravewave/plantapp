@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+
+<body>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<form action="/add" method="POST" enctype="multipart/form-data">
+    <label for="userName">Username:</label>
+    <input type="text" id="userName" name="user_name" required><br><br>
+
+    <label for="plantName">Plant Name:</label>
+    <input type="text" id="plantName" name="plant_name" required><br><br>
+
+    <label for="plantHeight">Plant Height:</label>
+    <input type="text" id="plantHeight" name="plant_height" required><br><br>
+
+    <!-- TODO: the output will be as a link. Use <a> in test.html -->
+    <br><label for="dbPediaLink">DBPedia Link:</label>
+    <input type="text" id="dbPediaLink" name="db_pedia_link" required><br><br>
+
+    <label for="dateAndTimeSeen">Date and Time Seen:</label>
+    <input type="datetime-local" id="dateAndTimeSeen" name="dts" required><br><br>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="gps" required><br><br>
+
+    <label for="plantSpread">Plant Spread:</label>
+    <input type="text" id="plantSpread" name="plant_spread" required><br><br>
+
+    <div>Plant Characteristics:</div>
+    <input class="plantChar" type="checkbox" id="flowers" name="flowers" value="Flowers">
+    <label for="flowers"> Flowers</label>
+    <input class="plantChar" type="checkbox" id="sunExposure" name="sun_exposure" value="Sun Exposure">
+    <label for="sunExposure"> Sun Exposure</label><br>
+    <div id="expandedCBs"></div><br>
+
+    <label for="plantImage">Import plant image</label><br><br>
+    <input type="file" id="plantImage" name="plantImg" accept="image/*" required>
+    <br><br>
+
+    <button type="submit">Submit</button>
+</form>
+<hr>
+<a href="/display"><p>View All Plants</p></a>  <!-- need change -->
+
+</body>
+
+<script>
+    const sunExposureCB = document.getElementById("sunExposure");
+    const expandedCBs = document.getElementById("expandedCBs");
+
+    // Add event listener to the initial checkbox
+    sunExposureCB.addEventListener("change", function() {
+        // Check if the checkbox is checked
+        if (this.checked) {
+            // Create new checkboxes
+            const dropdownBox = document.createElement("select");
+            dropdownBox.id = "sunChar";
+
+            const option1 = document.createElement("option");
+            option1.value = "Full Sun";
+            option1.textContent = "Full Sun";
+
+            const option2 = document.createElement("option");
+            option2.value = "Partial Shade";
+            option2.textContent = "Partial Shade";
+
+            const option3 = document.createElement("option");
+            option3.value = "Full Shade";
+            option3.textContent = "Full Shade";
+
+            dropdownBox.appendChild(option1);
+            dropdownBox.appendChild(option2);
+            dropdownBox.appendChild(option3);
+            expandedCBs.appendChild(dropdownBox);
+        } else {
+            // If the checkbox is unchecked, clear the container
+            expandedCBs.innerHTML = '';
+        }
+    });
+
+</script>
+</html>
