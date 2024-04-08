@@ -12,34 +12,54 @@
     <label for="userName">Username:</label>
     <input type="text" id="userName" name="user_name" required><br><br>
 
-    <label for="plantName">Plant Name:</label>
+    <label for="plantName">Plant Name (optional):</label>
     <input type="text" id="plantName" name="plant_name" required><br><br>
-
-    <label for="plantHeight">Plant Height:</label>
-    <input type="text" id="plantHeight" name="plant_height" required><br><br>
-
-    <!-- TODO: the output will be as a link. Use <a> in test.html -->
-    <br><label for="dbPediaLink">DBPedia Link:</label>
-    <input type="text" id="dbPediaLink" name="db_pedia_link" required><br><br>
 
     <label for="dateAndTimeSeen">Date and Time Seen:</label>
     <input type="datetime-local" id="dateAndTimeSeen" name="dts" required><br><br>
 
-    <label for="lat">Latitude:</label>
+    <label for="lat">Latitude where Plant was found:</label>
     <input type="text" id="lat" name="lat" required><br><br>
-    <label for="lon">Longitude:</label>
+    <label for="lon">Longitude where Plant was found:</label>
     <input type="text" id="lon" name="lon" required><br><br>
     <div id="address"></div>
 
+    <label id="plant_desc" for="plantDesc">Plant Description:</label>
+    <textarea id="plantDesc" name="plant_desc" rows="2" cols="40"></textarea><br><br>
+
+    <label for="plantHeight">Plant Height:</label>
+    <input type="text" id="plantHeight" name="plant_height" required><br><br>
     <label for="plantSpread">Plant Spread:</label>
     <input type="text" id="plantSpread" name="plant_spread" required><br><br>
+
+    <!-- TODO: the output will be as a link. Use <a> in test.html -->
+    <!-- TODO: from the link, need to obtain "nformation obtained from the DBPedia
+        knowledge graph. The information includes a common name/scientific name of
+        the plant, an english language description and a URI (which should link to the
+        DBPedia page describing the plant in detail)" -->
+    <label for="dbPediaLink">DBPedia Link:</label>
+    <input type="text" id="dbPediaLink" name="db_pedia_link" required><br><br>
 
     <div>Plant Characteristics:</div>
     <input class="plantChar" type="checkbox" id="flowers" name="flowers" value="Flowers">
     <label for="flowers"> Flowers</label>
+    <input class="plantChar" type="checkbox" id="leaves" name="leaves" value="Leaves">
+    <label for="leaves"> Leaves</label>
+    <input class="plantChar" type="checkbox" id="fruitsSeeds" name="fruits_seeds" value="Fruits/Seeds">
+    <label for="fruitsSeeds"> Fruits/Seeds</label>
     <input class="plantChar" type="checkbox" id="sunExposure" name="sun_exposure" value="Sun Exposure">
-    <label for="sunExposure"> Sun Exposure</label><br>
-    <div id="expandedCBs"></div><br>
+    <label for="sunExposure"> Sun Exposure</label>
+    <div id="expandedCBs"></div><br><br>
+
+    <label for="plantColour">Plant Colour:</label>
+    <input type="text" id="plantColour" name="plant_colour" required><br><br>
+
+    <label for="status">Identification Status:</label>
+    <select name="status" id="status">
+        <option value="Completed">Completed</option>
+        <option value="In Progress">In Progress</option>
+    </select>
+    <br><br>
 
     <label for="plantImage">Import plant image</label><br><br>
     <input type="file" id="plantImage" name="plantImg" accept="image/*" required>

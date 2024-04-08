@@ -7,6 +7,10 @@ a {
   color: #00B7FF;
 }
 
-#sunChar {
-  margin-left: 10%;
+#plant_desc {
+  display: inline-block;
+  vertical-align: top;
+ }
+#sunExposure, #expandedCBs {
+  display: inline-block;
 }
