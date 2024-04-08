@@ -48,40 +48,28 @@
 <a href="/display"><p>View All Plants</p></a>  <!-- need change -->
 
 </body>
-
+<script src="/javascripts/addPlant.js" defer></script>
 <script>
-    const sunExposureCB = document.getElementById("sunExposure");
-    const expandedCBs = document.getElementById("expandedCBs");
+    function reverseGeocode(latitude, longitude) {
+        // Construct the API request URL
+        // source: https://stackoverflow.com/questions/3513134/how-to-reverse-geocode-without-google
+        var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-    // Add event listener to the initial checkbox
-    sunExposureCB.addEventListener("change", function() {
-        // Check if the checkbox is checked
-        if (this.checked) {
-            // Create new checkboxes
-            const dropdownBox = document.createElement("select");
-            dropdownBox.id = "sunChar";
+        // Make a GET request to the API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Extract address information from the response
+                var address = data.display_name;
+                console.log('Reverse geocoded address:', address);
+            })
+            .catch(error => {
+                console.error('Error performing reverse geocoding:', error);
+            });
+    }
 
-            const option1 = document.createElement("option");
-            option1.value = "Full Sun";
-            option1.textContent = "Full Sun";
-
-            const option2 = document.createElement("option");
-            option2.value = "Partial Shade";
-            option2.textContent = "Partial Shade";
-
-            const option3 = document.createElement("option");
-            option3.value = "Full Shade";
-            option3.textContent = "Full Shade";
-
-            dropdownBox.appendChild(option1);
-            dropdownBox.appendChild(option2);
-            dropdownBox.appendChild(option3);
-            expandedCBs.appendChild(dropdownBox);
-        } else {
-            // If the checkbox is unchecked, clear the container
-            expandedCBs.innerHTML = '';
-        }
-    });
+    // Example usage: reverse geocode coordinates (latitude, longitude)
+    console.log(reverseGeocode(53.3921427, -1.4898791)); // London coordinates as an example
 
 </script>
 </html>
