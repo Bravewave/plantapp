@@ -30,7 +30,7 @@ router.get('/addplant', function(req, res, next) {
 router.post('/add', upload.single('plantImg'), function (req, res, next) {
   let userData = req.body;
   let filePath = req.file.path;
-  let result = plants.create(userData);
+  let result = plants.create(userData, filePath);
   console.log(result);
   res.redirect('/');
 });

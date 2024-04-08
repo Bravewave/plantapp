@@ -2,7 +2,7 @@
 const plantModel = require('../models/plants');
 
 // Function to create new plants - TODO
-exports.create = function (userData) {
+exports.create = function (userData, filePath) {
     // Create a new plant instance using the provided user data
     let plant = new plantModel({
         user_name: userData.user_name,
@@ -18,8 +18,10 @@ exports.create = function (userData) {
         leaves: userData.leaves,
         fruits_seeds: userData.fruits_seeds,
         sun_exposure: userData.sun_exposure,
+        sun_char: userData.sunChar,
         plant_colour: userData.plant_colour,
         status: userData.status,
+        img: filePath,
     });
 
     // Save the plant to the databases and handle success or failure

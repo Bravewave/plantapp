@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Define the MongoDB connection URL, including
 // the database name ('users' in this case)
-const mongoDB = 'mongodb://0.0.0.0:27017/users';
+const mongoDB = 'mongodb://0.0.0.0:27017/users'; // TODO: test on other device with 'mongodb://localhost:27017/users'
 let connection;
 
 // Set Mongoose to use the global Promise library

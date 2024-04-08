@@ -19,18 +19,18 @@
     <input type="datetime-local" id="dateAndTimeSeen" name="dts" required><br><br>
 
     <label for="lat">Latitude where Plant was found:</label>
-    <input type="text" id="lat" name="lat" required><br><br>
+    <input type="number" id="lat" name="lat" min="-90" max="90" step="0.00000001" required><br><br>
     <label for="lon">Longitude where Plant was found:</label>
-    <input type="text" id="lon" name="lon" required><br><br>
+    <input type="number" id="lon" name="lon" min="-180" max="180" step="0.00000001"required><br><br>
     <div id="address"></div>
 
     <label id="plant_desc" for="plantDesc">Plant Description:</label>
     <textarea id="plantDesc" name="plant_desc" rows="2" cols="40" required></textarea><br><br>
 
     <label for="plantHeight">Plant Height(m):</label>
-    <input type="text" id="plantHeight" name="plant_height" required><br><br>
+    <input type="number" id="plantHeight" name="plant_height" min="0" step="0.01" required><br><br>
     <label for="plantSpread">Plant Spread(m):</label>
-    <input type="text" id="plantSpread" name="plant_spread" required><br><br>
+    <input type="number" id="plantSpread" name="plant_spread" min="0" step="0.01" required><br><br>
 
     <!-- TODO: the output will be as a link. Use <a> in test.html -->
     <!-- TODO: from the link, need to obtain "nformation obtained from the DBPedia
@@ -49,7 +49,12 @@
     <label for="fruitsSeeds"> Fruits/Seeds</label>
     <input class="plantChar" type="checkbox" id="sunExposure" name="sun_exposure" value="Sun Exposure">
     <label for="sunExposure"> Sun Exposure</label>
-    <div id="expandedCBs"></div><br><br>
+    <select name="sun_char" id="sunChar" style="visibility: hidden">
+        <option value="Full Sun">Full Sun</option>
+        <option value="Partial Shade">Partial Shade</option>
+        <option value="Full Shade">Full Shade</option>
+    </select>
+    <br><br>
 
     <label for="plantColour">Plant Colour:</label>
     <input type="text" id="plantColour" name="plant_colour" required><br><br>
@@ -72,4 +77,5 @@
 </body>
 
 <script src="/javascripts/addPlant.js" defer></script>
+
 </html>
