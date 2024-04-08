@@ -25,8 +25,11 @@
     <label for="dateAndTimeSeen">Date and Time Seen:</label>
     <input type="datetime-local" id="dateAndTimeSeen" name="dts" required><br><br>
 
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="gps" required><br><br>
+    <label for="lat">Latitude:</label>
+    <input type="text" id="lat" name="lat" required><br><br>
+    <label for="lon">Longitude:</label>
+    <input type="text" id="lon" name="lon" required><br><br>
+    <div id="address"></div>
 
     <label for="plantSpread">Plant Spread:</label>
     <input type="text" id="plantSpread" name="plant_spread" required><br><br>
@@ -46,30 +49,7 @@
 </form>
 <hr>
 <a href="/display"><p>View All Plants</p></a>  <!-- need change -->
-
 </body>
+
 <script src="/javascripts/addPlant.js" defer></script>
-<script>
-    function reverseGeocode(latitude, longitude) {
-        // Construct the API request URL
-        // source: https://stackoverflow.com/questions/3513134/how-to-reverse-geocode-without-google
-        var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-
-        // Make a GET request to the API
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Extract address information from the response
-                var address = data.display_name;
-                console.log('Reverse geocoded address:', address);
-            })
-            .catch(error => {
-                console.error('Error performing reverse geocoding:', error);
-            });
-    }
-
-    // Example usage: reverse geocode coordinates (latitude, longitude)
-    console.log(reverseGeocode(53.3921427, -1.4898791)); // London coordinates as an example
-
-</script>
 </html>
