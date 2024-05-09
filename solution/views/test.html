@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display and Navigate to URL</title>
+</head>
+<body>
+
+<label for="urlInput">Enter a URL:</label>
+<input type="text" id="urlInput" name="urlInput">
+<button onclick="display()">Display and Navigate</button>
+
+<div id="resultContainer"></div>
+
+<script>
+    function display() {
+        var url = document.getElementById('urlInput').value;
+
+        console.log("url: " + url);
+        // Check if the URL starts with "http://" or "https://"
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            // If not, assume it's an HTTPS URL and prepend it
+            url = 'https://' + url;
+        }
+
+        createLink(url);
+    }
+    function createLink(inputUrl) {
+        // Create a link element
+        var linkkk = document.createElement('a');
+        linkkk.href = inputUrl;
+        linkkk.textContent = inputUrl;
+        linkkk.target = "_blank"; // Open link in a new tab/window
+
+        // Append the link to the result container
+        var resultContainer = document.getElementById('resultContainer');
+        resultContainer.innerHTML = ''; // Clear previous content
+        resultContainer.appendChild(linkkk);
+
+        // Navigate to the URL
+        //window.location.href = inputUrl;
+    }
+</script>
+
+</body>
+</html>
