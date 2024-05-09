@@ -11,6 +11,7 @@ self.addEventListener('install', event => {
             cache.addAll([
                 '/',
                 '/stylesheets/style.css',
+                '/addPlant'
             ]);
         }
         catch{
@@ -22,29 +23,44 @@ self.addEventListener('install', event => {
 
 //clear cache on reload
 self.addEventListener('activate', event => {
-// Remove old caches
     event.waitUntil(
         (async () => {
             const keys = await caches.keys();
-            return keys.map(async (cache) => {
-                if(cache !== cacheName) {
-                    console.log('Service Worker: Removing old cache: '+cache);
-                    return await caches.delete(cache);
+            // Use Promise.all to ensure all promises returned by the map are awaited
+            return Promise.all(keys.map(async (cache) => {
+                if (cache !== CACHE_NAME) {
+                    console.log('Service Worker: Removing old cache:', cache);
+                    return caches.delete(cache);
                 }
-            })
+            }));
         })()
-    )
-})
+    );
+    self.clients.claim();
+});
 
+
+// Fetch event to handle network requests and update cache dynamically
 self.addEventListener('fetch', function(event) {
-
-    console.log('Service Worker: Fetch', event.request.url);
-
-    console.log("Url", event.request.url);
-
     event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request);
+        fetch(event.request).then(function(response) {
+            // If the fetch succeeds, clone the response and store it in the cache
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then(function(cache) {
+                cache.put(event.request, responseToCache);
+            });
+            return response;
+        }).catch(function() {
+            // If the network is unavailable, attempt to fulfill the request from the cache
+            return caches.match(event.request)
+                .then(function(response) {
+                    if (response) {
+                        return response;
+                    }
+                    // Optionally handle the case when the response is not in the cache
+                    // and the network is unavailable. Return a default fallback or a custom error message
+                    console.log('Service Worker: Fetching failed; no network and no cache:', event.request.url);
+                    // Return a default fallback (if any)
+                });
         })
     );
 });

@@ -19,6 +19,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
+  
 }
 
 .column {
@@ -33,14 +34,16 @@ body {
   background-color: #bd8971;
   box-sizing: border-box;
   padding: 10px;
-  margin: 50px;
+  margin: 45px;
   height: 50vh;
+  box-shadow: 10px 10px 5px rgb(104, 118, 101);
 }
 
 .image-section {
   width: 33%;
   height: 50%;
   margin-right: 10px;
+  
 }
 
 .text-section {
