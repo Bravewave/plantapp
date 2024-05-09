@@ -1,11 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Blocks</title>
+    <link rel="stylesheet" href="/stylesheets/style.css"> <!-- Link to your style.css file -->
+</head>
+<body>
+<div class="container">
+    <div class="column">
+        <% for (let i = 0; i < items.length; i += 2) { %>
+            <div class="block">
+                <div class="image-section">
+                    <!-- Add your image here -->
+                    <img src="/public/images/PLANT.jpg" alt="Image 1">
+                </div>
+                <div class="text-section">
+                    <% if (items[i]) { %>
+                        <p>
+                        Uploaded by:
+                        </p>
+                        <p>
+                        Date and time:
+                        </p>
+                        <p>
+                        Plant name:
+                        </p>
+                        <p>
+                        Location:
+                        </p>
+                        <p>
+                        Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                        </p>
+                        <p>
+                        Characteristics:
+                        </p>
+                        <p>
+                        Identification Status:
+                        </p>
+                        <p>
+                        DBPedia:
+                        </p>
+
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <div class="column">
+        <% for (let i = 1; i < items.length; i += 2) { %>
+            <div class="block">
+                <div class="image-section">
+                    <!-- Add your image here -->
+                    <img src="/public/images/PLANT.jpg" alt="Image 2">
+                </div>
+                <div class="text-section">
+                    <% if (items[i]) { %>
+                        Item <%= i + 1 %> - <%= items[i].name %>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+</body>
 </html>
