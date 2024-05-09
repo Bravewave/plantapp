@@ -30,20 +30,24 @@ const itemsFromDatabase = [
 ];
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', items: itemsFromDatabase });
+router.get('/', function(req, res) {
+  res.render('index', { title: 'PlantApp', items: itemsFromDatabase });
 });
 
-router.get('/addplant', function(req, res, next) {
+router.get('/addplant', function(req, res) {
   res.render('addPlant', { title: 'Add Plant' });
 });
 
-router.post('/add', upload.single('plantImg'), function (req, res, next) {
-  let userData = req.body;
-  let filePath = req.file.path;
-  let result = plants.create(userData, filePath);
-  console.log(result);
-  res.redirect('/');
+router.get("/test", (req, res) => {
+  res.render("testing");
+});
+
+router.post('/add', upload.single('plantImg'), function (req, res) {
+	let userData = req.body;
+	let filePath = req.file.path;
+	let result = plants.create(userData, filePath);
+	console.log(result);
+	res.redirect('/');
 });
 
 module.exports = router;
