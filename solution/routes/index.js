@@ -31,9 +31,6 @@ const itemsFromDatabase = [
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
-  res.render('index', { title: 'PlantApp' });
-=======
   res.render('index', { title: 'Express', items: itemsFromDatabase });
 });
 
@@ -47,7 +44,6 @@ router.post('/add', upload.single('plantImg'), function (req, res, next) {
   let result = plants.create(userData, filePath);
   console.log(result);
   res.redirect('/');
->>>>>>> main
 });
 
 module.exports = router;
