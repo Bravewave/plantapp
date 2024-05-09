@@ -34,7 +34,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', items: itemsFromDatabase });
 });
 
-<<<<<<< HEAD
 router.get('/addplant', function(req, res, next) {
   res.render('addPlant', { title: 'Add Plant' });
 });
@@ -46,8 +45,5 @@ router.post('/add', upload.single('plantImg'), function (req, res, next) {
   console.log(result);
   res.redirect('/');
 });
-=======
-
->>>>>>> Henry
 
 module.exports = router;
