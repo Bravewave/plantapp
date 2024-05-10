@@ -4,20 +4,29 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar Dev</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= title %></title>
   </head>
   <body>
     <div class="container">
-      <nav class="side_nav">
-        <h1 class="logo">PlantApp</h1>
-        <ul class="nav-list">
-        <li id="feed"><a href="/">Feed</a></li>
-        <li id="post"><a href="/create">Make Post</a></li>
-      </ul>
+      <!-- Sidebar Nav -->
+      <nav class="sidebar">
+        <h1><a href="/" class="logo">PlantApp</a></h1>
+
+        <ul id="nav-list">
+          <li><a class="link" href="/">Feed</a></li>
+          <li><a class="link" href="/addplant">Make Post</a></li>
+        </ul>
       </nav>
       <div class="content">
-        
+        <div id="menu-toggle">
+          <div class="bar" id="bar-1"></div>
+          <div class="bar" id="bar-2"></div>
+          <div class="bar" id="bar-3"></div>
+        </div>
+        <h1>Welcome to <%= title %></h1>
       </div>
     </div>
-  </body>
+    <script src="/javascripts/nav.js"></script>
+</body>
 </html>

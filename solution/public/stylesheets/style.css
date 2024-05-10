@@ -1,10 +1,10 @@
 @import url("nav.css");
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-html,body {
+html, body {
   padding:0;
   margin:0;
   height:100%;
-  background-color: #89983e;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
-  
+  font: 16px "Montserrat", sans-serif;
 }
 
 .column {

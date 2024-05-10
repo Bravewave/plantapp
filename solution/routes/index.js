@@ -39,7 +39,7 @@ router.get('/addplant', function(req, res) {
 });
 
 router.get("/test", (req, res) => {
-  res.render("testing");
+  res.render("testing", { title: "Testing Page" });
 });
 
 router.post('/add', upload.single('plantImg'), function (req, res) {
