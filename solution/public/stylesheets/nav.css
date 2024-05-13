@@ -6,12 +6,12 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 12.5%;
     height: 100vh;
     background-color: var(--main-colour);
     color: #fff;
     transition: transform 0.3s ease;
-    transform: translateX(0); /* CHANGE AFTER TESTING */
+    transform: translateX(-100%);
 }
 
 .sidebar h1 {
@@ -32,7 +32,6 @@
     min-height: 100%;
     padding: 20px;
     transition: margin-left 0.3s ease;
-    margin-left: 15%; /* DELETE AFTER TESTING */
 }
 
 .sidebar-active .sidebar {
@@ -40,7 +39,7 @@
 }
 
 .sidebar-active .content{
-    margin-left: 15%;
+    margin-left: 12.5%;
 }
 
 #nav-list {
