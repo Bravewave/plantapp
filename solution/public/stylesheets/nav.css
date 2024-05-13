@@ -1,19 +1,25 @@
 :root {
-    --main-colour: #648e6f;
+    --main-colour: #425448;
 }
 
 .sidebar {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
     width: 15%;
     height: 100vh;
     background-color: var(--main-colour);
     color: #fff;
     transition: transform 0.3s ease;
-    transform: translateX(-250px);
+    transform: translateX(0); /* CHANGE AFTER TESTING */
 }
 
 .sidebar h1 {
+    margin: auto;
+    margin-top: 1em;
+    text-align: center;
     font-family: "Merienda", cursive;
-    font-size: 32px;
+    font-size: 36px;
 }
 
 .sidebar a.logo {
@@ -23,10 +29,10 @@
 
 .content {
     position: absolute;
-    min-width: 75%;
     min-height: 100%;
     padding: 20px;
     transition: margin-left 0.3s ease;
+    margin-left: 15%; /* DELETE AFTER TESTING */
 }
 
 .sidebar-active .sidebar {
@@ -40,16 +46,17 @@
 #nav-list {
     list-style: none;
     position: relative;
+    font-size: 20px;
+    text-align: left;
+}
 
-    > li {
-        padding: 10px 0;
+#nav-list li {
+    padding: 10px 0;
+}
 
-        > a {
-            text-decoration: none;
-            color: white;
-            padding: 10px 14px;
-        }
-    }
+#nav-list li a {
+    text-decoration: none;
+    color: white;
 }
 
 #menu-toggle {

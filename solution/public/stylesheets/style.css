@@ -5,10 +5,7 @@ html, body {
   padding:0;
   margin:0;
   height:100%;
-}
-
-body {
-  width:1600px;
+  box-sizing: border-box;
 }
 
 #plant_desc {
@@ -22,6 +19,7 @@ body {
   flex-wrap: wrap;
   height: 100vh;
   font: 16px "Montserrat", sans-serif;
+  background-color: #e2e9f7;
 }
 
 .column {
