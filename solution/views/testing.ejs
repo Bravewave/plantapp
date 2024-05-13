@@ -1,32 +1,5 @@
 <!-- TODO: delete this file -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <title><%= title %></title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Sidebar Nav -->
-      <nav class="sidebar">
-        <h1><a href="/" class="logo">PlantApp</a></h1>
-
-        <ul id="nav-list">
-          <li><a class="link" href="/">Feed</a></li>
-          <li><a class="link" href="/addplant">Make Post</a></li>
-        </ul>
-      </nav>
-      <div class="content">
-        <div id="menu-toggle">
-          <div class="bar" id="bar-1"></div>
-          <div class="bar" id="bar-2"></div>
-          <div class="bar" id="bar-3"></div>
-        </div>
+<%- include("partials/head") %>
+    <%- include("partials/nav") %>
         <h1>Welcome to <%= title %></h1>
-      </div>
-    </div>
-    <script src="/javascripts/nav.js"></script>
-</body>
-</html>
+    <%- include("partials/foot") %>
