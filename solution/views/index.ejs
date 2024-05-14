@@ -1,27 +1,27 @@
 <%- include("partials/head") %>
 <%- include("partials/nav") %>
-    <div class="column">
-      <% if (items.length > 0) { %>
-        <% items.forEach((plant, index) => { %>
-          <% if (index === 0) { %>
-            <div class="separator"></div>
-          <% } %>
-          <div class="block">
-            <div class="image-section">
-              <img src="<%= plant.img %>" alt="Image <%= index + 1 %>">
-            </div>
-            <div class="text-section">
-              <p><span class="attribute">Uploaded by: </span><%= plant.user_name %></p>
-              <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
-              <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
-              <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
-              <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
-            </div>
+<div class="container">
+  <div class="column">
+    <% if (items.length > 0) { %>
+      <div class="separator"></div>
+      <% items.forEach((plant, index) => { %>
+        <div class="block">
+          <div class="image-section">
+            <img src="/<%= plant.img %>" alt="Image <%= index + 1 %>">
           </div>
+          <div class="text-section">
+            <p><span class="attribute">Uploaded by: </span><%= plant.user_name %></p>
+            <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
+            <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
+            <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
+            <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
+          </div>
+        </div>
         <div class="separator"></div>
-        <% }); %>
-      <% } else { %>
-        <h1 class="no-posts">No Posts Found!</h1>
-      <% } %>
+      <% }); %>
+    <% } else { %>
+      <h1 class="no-posts">No Posts Found!</h1>
+    <% } %>
+  </div>
 </div>
 <%- include("partials/foot") %>
