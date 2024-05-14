@@ -28,6 +28,7 @@
 }
 
 .content {
+    flex: 1;
     position: absolute;
     min-height: 100%;
     padding: 20px;
