@@ -41,11 +41,12 @@ exports.create = function (userData, filePath) {
 };
 
 // Function to get all plants
-exports.getAll = async (req, res) => {
+exports.getAll = async () => {
     try {
         const plants = await plantModel.find();
-        return plants
+        return plants;
     } catch (error) {
         console.error(error);
+        return [];
     }
 };

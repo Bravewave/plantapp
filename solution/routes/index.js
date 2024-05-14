@@ -17,8 +17,15 @@ const upload = multer({ storage: storage });
 const dbPlants = plants.getAll();
 
 /* GET home page. */
-router.get('/', (req, res) => {
-  res.render("index", { title: "Plant App", items: dbPlants });
+router.get('/', async (req, res) => {
+  try {
+    const dbPlants = await plants.getAll();
+    console.log(dbPlants);
+    res.render("index", { title: "Plant App", items: dbPlants });
+  } catch (error) {
+    console.error(error);
+    res.render("index", { title: "Plant App", items: [] });
+  }
 });
 
 router.get('/addplant', function(req, res) {

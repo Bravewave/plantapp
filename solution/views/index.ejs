@@ -2,23 +2,29 @@
 <%- include("partials/nav") %>
     <div class="column">
       <% if (items.length > 0) { %>
-        <% items.forEach((item, index) => { %>
+        <% items.forEach((plant, index) => { %>
           <% if (index === 0) { %>
             <div class="separator"></div>
           <% } %>
           <div class="block">
             <div class="image-section">
-              <img src="/public/images/PLANT.jpg" alt="Image 1">
+              <img src="<%= plant.img %>" alt="Image <%= index + 1 %>">
             </div>
             <div class="text-section">
-              <p>Uploaded by:</p>
-              <p>Date and time:</p>
-              <p>Plant name:</p>
-              <p>Location:</p>
-              <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
-              <p>Characteristics: dauwhdwoiudwqoiwqwqoiwqidhoiwqdoiqdoiwqd</p>
-              <p>Identification Status:</p>
-              <p>DBPedia:</p>
+              <p><span class="attribute">Uploaded by: </span><%= plant.user_name %></p>
+              <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
+              <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
+              <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
+              <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
+              <p><span class="attribute">Height: </span><%= plant.plant_height %> m</p>
+              <p><span class="attribute">Spread: </span><%= plant.plant_spread %> m</p>
+              <p><span class="attribute">DBPedia: </span><a href="<%= plant.db_pedia_link %>"><%= plant.db_pedia_link %></a></p>
+              <p><span class="attribute">Flowers: </span><%= plant.flowers %></p>
+              <p><span class="attribute">Leaves: </span><%= plant.leaves %></p>
+              <p><span class="attribute">Fruits/Seeds: </span><%= plant.fruits_seeds %></p>
+              <p><span class="attribute">Sun Exposure: </span><%= plant.sun_exposure %></p>
+              <p><span class="attribute">Characteristics: </span><%= plant.sun_char %></p>
+              <p><span class="attribute">Plant Colour: </span><%= plant.plant_colour %></p>
             </div>
           </div>
         <div class="separator"></div>
