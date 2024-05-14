@@ -29,6 +29,7 @@
   .sidebar a.logo {
     text-decoration: none;
     color: white;
+    font-size: calc(1.5vw + 1.5vh);
   }
   
   .content {
@@ -50,6 +51,7 @@
     position: relative;
     font-size: 20px;
     text-align: left;
+    font-size: calc(1vw + 1vh);
   }
   
   #nav-list li {
