@@ -41,16 +41,11 @@ exports.create = function (userData, filePath) {
 };
 
 // Function to get all plants
-exports.getAll = function () {
-    // Retrieve all plants from the databases
-    return plantModel.find({}).then(plants => {
-        // Return the list of plants as a JSON string
-        return JSON.stringify(plants);
-    }).catch(err => {
-        // Log the error if retrieval fails
-        console.log(err);
-
-        // Return null in case of an error
-        return null;
-    });
+exports.getAll = async (req, res) => {
+    try {
+        const plants = await plantModel.find();
+        return plants
+    } catch (error) {
+        console.error(error);
+    }
 };

@@ -14,20 +14,11 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const itemsFromDatabase = [
-  { id: 1, name: 'Item 1' },
-  { id: 2, name: 'Item 2' },
-  { id: 3, name: 'Item 3' },
-  { id: 4, name: 'Item 4' },
-  { id: 5, name: 'Item 5' },
-  { id: 6, name: 'Item 6' },
-  { id: 7, name: 'Item 7' },
-  // Add more items as needed
-];
+const dbPlants = plants.getAll();
 
 /* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'PlantApp', items: itemsFromDatabase });
+router.get('/', (req, res) => {
+  res.render("index", { title: "Plant App", items: dbPlants });
 });
 
 router.get('/addplant', function(req, res) {

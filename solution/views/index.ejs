@@ -1,26 +1,30 @@
 <%- include("partials/head") %>
 <%- include("partials/nav") %>
-<div class="column">
-    <% for (let i = 0; i < items.length; i += 1) { %>
-      <div class="block">
-        <div class="image-section">
-          <img src="/public/images/PLANT.jpg" alt="Image 1">
-        </div>
-        <div class="text-section">
-          <% if (items[i]) { %>
-            <p>Uploaded by:</p>
-            <p>Date and time:</p>
-            <p>Plant name:</p>
-            <p>Location:</p>
-            <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
-            <p>Characteristics: dauwhdwoiudwqoiwqwqoiwqidhoiwqdoiqdoiwqd</p>
-            <p>Identification Status:</p>
-            <p>DBPedia:</p>
+    <div class="column">
+      <% if (items.length > 0) { %>
+        <% items.forEach((item, index) => { %>
+          <% if (index === 0) { %>
+            <div class="separator"></div>
           <% } %>
-        </div>
-      </div>
-    <% } %>
-  </div>
-</div>
+          <div class="block">
+            <div class="image-section">
+              <img src="/public/images/PLANT.jpg" alt="Image 1">
+            </div>
+            <div class="text-section">
+              <p>Uploaded by:</p>
+              <p>Date and time:</p>
+              <p>Plant name:</p>
+              <p>Location:</p>
+              <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
+              <p>Characteristics: dauwhdwoiudwqoiwqwqoiwqidhoiwqdoiqdoiwqd</p>
+              <p>Identification Status:</p>
+              <p>DBPedia:</p>
+            </div>
+          </div>
+        <div class="separator"></div>
+        <% }); %>
+      <% } else { %>
+        <h1 class="no-posts">No Posts Found!</h1>
+      <% } %>
 </div>
 <%- include("partials/foot") %>
