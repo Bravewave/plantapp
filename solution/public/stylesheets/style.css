@@ -24,6 +24,7 @@ html, body {
 }
 
 .column {
+  margin-left: 10px;
   flex: 1;
 }
 
