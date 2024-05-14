@@ -1,22 +1,18 @@
-var express = require('express');
-var router = express.Router();
-var plants = require('../controllers/plants')
-var multer = require('multer');
+const express = require('express');
+const router = express.Router();
+const plants = require('../controllers/plants')
+const multer = require('multer');
 
 // storage defines the storage options to be used for file upload with multer
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
     cb(null, 'public/images/uploads/');
   },
-  filename: function (req, file, cb) {  // TODO: check again
-    var original = file.originalname;
-    var file_extension = original.split(".");
-    // Make the file name the date + the file extension
-    filename =  Date.now() + '.' + file_extension[file_extension.length-1];
-    cb(null, filename);
-  }
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+}
 });
-let upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 const itemsFromDatabase = [
   { id: 1, name: 'Item 1' },
