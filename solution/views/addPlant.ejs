@@ -4,7 +4,8 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
-
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
 <body>
 <h1><%= title %></h1>
 <p>Welcome to <%= title %></p>
@@ -72,10 +73,9 @@
 
     <button type="submit">Submit</button>
 </form>
-<hr>
-<a href="/"><p>View All Plants</p></a>  <!-- need change -->
 </body>
 
 <script src="/javascripts/addPlant.js" defer></script>
 
 </html>
+<%- include("partials/foot") %>

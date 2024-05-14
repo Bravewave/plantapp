@@ -3,7 +3,7 @@
 }
 
 .sidebar {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     width: 12.5%;
@@ -59,6 +59,7 @@
 }
 
 #menu-toggle {
+    position: fixed;
     display: inline-block;
     background-color: var(--main-colour);
     color: white;
