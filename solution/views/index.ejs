@@ -1,9 +1,7 @@
 <%- include("partials/head") %>
 <%- include("partials/nav") %>
 <div class="container">
-  <div class="left-column">
-  </div>
-  <div class="middle-column">
+  <div class="column" id="column-feed">
     <% if (items.length > 0) { %>
       <div class="separator"></div>
       <% items.forEach((plant, index) => { %>
@@ -25,7 +23,7 @@
       <h1 class="no-posts">No Posts Found!</h1>
     <% } %>
   </div>
-  <div class="right-column">
+  <div class="column" id="column-filter">
     <h2>Filters</h2>
     <form action="/filter" method="POST">
       <label for="sortOrder">Sort By:</label>

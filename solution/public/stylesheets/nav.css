@@ -1,96 +1,116 @@
 :root {
-    --main-colour: #425448;
+  --main-colour: #425448;
+}
+
+html, body {
+  height: 100%; /* Ensure html and body cover the full height of the viewport */
+}
+
+.sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 12.5%;
+  height: 100vh;
+  background-color: var(--main-colour);
+  color: #fff;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+}
+
+.sidebar h1 {
+  margin: auto;
+  margin-top: 1em;
+  text-align: center;
+  font-family: "Merienda", cursive;
+  font-size: 36px;
+}
+
+.sidebar a.logo {
+  text-decoration: none;
+  color: white;
+  font-size: calc(1.5vw + 1.5vh);
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+
+  > * {
+    width: 100%;
+    padding: 1rem;
   }
+}
+
+#column-hamburger {
+    width: 5%;
+}
+
+#column-feed {
+    width: 80%;
+}
+
+#column-filter {
+    order: 15%;
+}
+
   
-  html, body {
-    height: 100%; /* Ensure html and body cover the full height of the viewport */
-  }
-  
-  .sidebar {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    width: 12.5%;
-    height: 100vh;
-    background-color: var(--main-colour);
-    color: #fff;
-    transition: transform 0.3s ease;
-    transform: translateX(-100%);
-  }
-  
-  .sidebar h1 {
-    margin: auto;
-    margin-top: 1em;
-    text-align: center;
-    font-family: "Merienda", cursive;
-    font-size: 36px;
-  }
-  
-  .sidebar a.logo {
-    text-decoration: none;
-    color: white;
-    font-size: calc(1.5vw + 1.5vh);
-  }
-  
-  .content {
-    flex: 1;
-    padding: 20px;
-    transition: margin-left 0.3s ease;
-  }
-  
-  .sidebar-active .sidebar {
-    transform: translateX(0);
-  }
-  
-  .sidebar-active .content {
-    margin-left: 12.5%;
-  }
-  
-  #nav-list {
-    list-style: none;
-    position: relative;
-    font-size: 20px;
-    text-align: left;
-    font-size: calc(1vw + 1vh);
-  }
-  
-  #nav-list li {
-    padding: 10px 0;
-  }
-  
-  #nav-list li a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  #menu-toggle {
-    position: fixed;
-    display: inline-block;
-    background-color: var(--main-colour);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 0px 5px;
-  }
-  
-  .bar {
-    width: 25px;
-    height: 5px;
-    background-color: white;
-    margin: 6px 0;
-    transition: 0.4s;
-    border-radius: 15%;
-  }
-  
-  .cross #bar-1 {
-    transform: translate(0, 11px) rotate(-45deg);
-  }
-  
-  .cross #bar-2 {
-    opacity: 0;
-  }
-  
-  .cross #bar-3 {
-    transform: translate(0, -11px) rotate(45deg);
-  }
+.sidebar-active .sidebar {
+  transform: translateX(0);
+}
+
+.sidebar-active .content {
+  margin-left: 12.5%;
+}
+
+#nav-list {
+  list-style: none;
+  position: relative;
+  font-size: 20px;
+  text-align: left;
+  font-size: calc(1vw + 1vh);
+}
+
+#nav-list li {
+  padding: 10px 0;
+}
+
+#nav-list li a {
+  text-decoration: none;
+  color: white;
+}
+
+#menu-toggle {
+  position: fixed;
+  display: inline-block;
+  background-color: var(--main-colour);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0px 5px;
+}
+
+.bar {
+  width: 25px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+  border-radius: 15%;
+}
+
+.cross #bar-1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+.cross #bar-2 {
+  opacity: 0;
+}
+
+.cross #bar-3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
   
