@@ -19,7 +19,7 @@ let PlantSchema = new Schema(
         leaves: { type: String, required: false, max: 10 },
         fruits_seeds: { type: String, required: false, max: 10 },
         sun_exposure: { type: String, required: false, max: 10 },
-            sun_char: { type: String, required: false, max: 30 },
+        sun_char: { type: String, required: false, max: 30 },
         plant_colour: { type: String, required: true, max: 40 },
         // Define the img field with type String
         img: { type: String }
