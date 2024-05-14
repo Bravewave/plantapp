@@ -1,10 +1,13 @@
   </div>
     </div>
     <script src="/javascripts/nav.js"></script>
+    <% if (title === "Add Plant") { %>
+    <script src="/javascripts/addPlant.js" defer></script>
+    <% } %>
+    <script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' });
+      }
+    </script>
   </body>
-  <script>
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' });
-    }
-  </script>
 </html>

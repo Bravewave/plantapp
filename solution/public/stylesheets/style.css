@@ -15,9 +15,16 @@ html, body {
 
 .container {
   display: flex;
+<<<<<<< HEAD
   flex-wrap: nowrap; /* Prevent wrapping of flex items */
   min-height: 100vh; /* Ensure the container covers at least the viewport height */
   width: 100%;
+=======
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  font: 16px "Montserrat", sans-serif;
+>>>>>>> 5be2d8517119106759ff12df556ffa6ed3b33b23
   background-color: #e2e9f7;
   font: 16px "Montserrat", sans-serif;
 }

@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-</head>
 <%- include("partials/head") %>
 <%- include("partials/nav") %>
-<body>
 <h1><%= title %></h1>
 <p>Welcome to <%= title %></p>
 <form action="/add" method="POST" enctype="multipart/form-data">
@@ -22,7 +15,7 @@
     <label for="lat">Latitude where Plant was found:</label>
     <input type="number" id="lat" name="lat" min="-90" max="90" step="0.00000001" required><br><br>
     <label for="lon">Longitude where Plant was found:</label>
-    <input type="number" id="lon" name="lon" min="-180" max="180" step="0.00000001"required><br><br>
+    <input type="number" id="lon" name="lon" min="-180" max="180" step="0.00000001" required><br><br>
     <div id="address"></div>
 
     <label id="plant_desc" for="plantDesc">Plant Description:</label>
@@ -73,9 +66,4 @@
 
     <button type="submit">Submit</button>
 </form>
-</body>
-
-<script src="/javascripts/addPlant.js" defer></script>
-
-</html>
 <%- include("partials/foot") %>
