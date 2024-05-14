@@ -1,7 +1,9 @@
 <%- include("partials/head") %>
 <%- include("partials/nav") %>
 <div class="container">
-  <div class="column">
+  <div class="left-column">
+  </div>
+  <div class="middle-column">
     <% if (items.length > 0) { %>
       <div class="separator"></div>
       <% items.forEach((plant, index) => { %>
@@ -22,6 +24,35 @@
     <% } else { %>
       <h1 class="no-posts">No Posts Found!</h1>
     <% } %>
+  </div>
+  <div class="right-column">
+    <h2>Filters</h2>
+    <form action="/filter" method="POST">
+      <label for="sortOrder">Sort By:</label>
+      <select id="sortOrder" name="sort_order">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select><br><br>
+      <div>Checkbox Options:</div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="checkbox1" name="checkbox1" value="Option1">
+        <label for="checkbox1">Option 1</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="checkbox2" name="checkbox2" value="Option2">
+        <label for="checkbox2">Option 2</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="Option3">
+        <label for="checkbox3">Option 3</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="checkbox4" name="checkbox4" value="Option4">
+        <label for="checkbox4">Option 4</label>
+      </div>
+      <br>
+      <button type="submit">Apply</button>
+    </form>
   </div>
 </div>
 <%- include("partials/foot") %>
