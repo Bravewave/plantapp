@@ -1,56 +1,26 @@
 <%- include("partials/head") %>
 <%- include("partials/nav") %>
-    <div class="column">
-        <% for (let i = 0; i < items.length; i += 2) { %>
-            <div class="block">
-                <div class="image-section">
-                    <!-- Add your image here -->
-                    <img src="/public/images/PLANT.jpg" alt="Image 1">
-                </div>
-                <div class="text-section">
-                    <% if (items[i]) { %>
-                        <p>
-                        Uploaded by:
-                        </p>
-                        <p>
-                        Date and time:
-                        </p>
-                        <p>
-                        Plant name:
-                        </p>
-                        <p>
-                        Location:
-                        </p>
-                        <p>
-                        Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        </p>
-                        <p>
-                        Characteristics: dauwhdwoiudwqoiwqwqoiwqidhoiwqdoiqdoiwqd
-                        </p>
-                        <p>
-                        Identification Status:
-                        </p>
-                        <p>
-                        DBPedia:
-                        </p>
-
-                    <% } %>
-                </div>
-            </div>
-        <% } %>
-    </div>
-    <div class="column">
-        <% for (let i = 1; i < items.length; i += 2) { %>
-            <div class="block">
-                <div class="image-section">
-                    <!-- Add your image here -->
-                    <img src="/public/images/PLANT.jpg" alt="Image 2">
-                </div>
-                <div class="text-section">
-                    <% if (items[i]) { %>
-                        Item <%= i + 1 %> - <%= items[i].name %>
-                    <% } %>
-                </div>
-            </div>
-        <% } %>
+<div class="column">
+    <% for (let i = 0; i < items.length; i += 1) { %>
+      <div class="block">
+        <div class="image-section">
+          <img src="/public/images/PLANT.jpg" alt="Image 1">
+        </div>
+        <div class="text-section">
+          <% if (items[i]) { %>
+            <p>Uploaded by:</p>
+            <p>Date and time:</p>
+            <p>Plant name:</p>
+            <p>Location:</p>
+            <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
+            <p>Characteristics: dauwhdwoiudwqoiwqwqoiwqidhoiwqdoiqdoiwqd</p>
+            <p>Identification Status:</p>
+            <p>DBPedia:</p>
+          <% } %>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+</div>
 <%- include("partials/foot") %>

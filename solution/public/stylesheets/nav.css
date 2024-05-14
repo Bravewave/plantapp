@@ -1,8 +1,12 @@
 :root {
     --main-colour: #425448;
-}
-
-.sidebar {
+  }
+  
+  html, body {
+    height: 100%; /* Ensure html and body cover the full height of the viewport */
+  }
+  
+  .sidebar {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -12,53 +16,52 @@
     color: #fff;
     transition: transform 0.3s ease;
     transform: translateX(-100%);
-}
-
-.sidebar h1 {
+  }
+  
+  .sidebar h1 {
     margin: auto;
     margin-top: 1em;
     text-align: center;
     font-family: "Merienda", cursive;
     font-size: 36px;
-}
-
-.sidebar a.logo {
+  }
+  
+  .sidebar a.logo {
     text-decoration: none;
     color: white;
-}
-
-.content {
-    position: absolute;
-    min-height: 100%;
+  }
+  
+  .content {
+    flex: 1;
     padding: 20px;
     transition: margin-left 0.3s ease;
-}
-
-.sidebar-active .sidebar {
+  }
+  
+  .sidebar-active .sidebar {
     transform: translateX(0);
-}
-
-.sidebar-active .content{
+  }
+  
+  .sidebar-active .content {
     margin-left: 12.5%;
-}
-
-#nav-list {
+  }
+  
+  #nav-list {
     list-style: none;
     position: relative;
     font-size: 20px;
     text-align: left;
-}
-
-#nav-list li {
+  }
+  
+  #nav-list li {
     padding: 10px 0;
-}
-
-#nav-list li a {
+  }
+  
+  #nav-list li a {
     text-decoration: none;
     color: white;
-}
-
-#menu-toggle {
+  }
+  
+  #menu-toggle {
     position: fixed;
     display: inline-block;
     background-color: var(--main-colour);
@@ -66,25 +69,26 @@
     border: none;
     cursor: pointer;
     padding: 0px 5px;
-}
-
-.bar {
+  }
+  
+  .bar {
     width: 25px;
     height: 5px;
     background-color: white;
     margin: 6px 0;
     transition: 0.4s;
     border-radius: 15%;
-}
-
-.cross #bar-1 {
+  }
+  
+  .cross #bar-1 {
     transform: translate(0, 11px) rotate(-45deg);
-}
-
-.cross #bar-2 {
+  }
+  
+  .cross #bar-2 {
     opacity: 0;
-}
-
-.cross #bar-3 {
+  }
+  
+  .cross #bar-3 {
     transform: translate(0, -11px) rotate(45deg);
-}
+  }
+  
