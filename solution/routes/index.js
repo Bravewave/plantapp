@@ -40,8 +40,8 @@ router.get("/test", (req, res) => {
 
 router.get('/laratest', async (req, res) => {
     // retrieve plant info from DBPedia
-    const plant_name = "Rose";
-    const resource = `http://dbpedia.org/resource/${plant_name}`;
+    const plant_namee = "Rose";
+    const resource = `http://dbpedia.org/resource/${plant_namee}`;
     const endpointUrl = 'https://dbpedia.org/sparql';
 
     const sparqlQuery = `
@@ -73,7 +73,6 @@ try {
             let bindings = data.results.bindings;
             if (bindings.length > 0) {
                 dbPlants.map(plant => {
-                    plant.plant_name = bindings[0].name.value;
                     plant.plant_sci_name = bindings[0].sci_name ? bindings[0].sci_name.value : "Unknown";
                     plant.dbpedia_desc = bindings[0].abstract.value;
                     plant.dbpedia_uri = bindings[0].uri.value;
@@ -81,7 +80,6 @@ try {
                 res.render("index", { title: "Plant App", items: dbPlants });
             } else {
                 dbPlants.map(plant => {
-                    plant.plant_name = "Unknown";
                     plant.plant_sci_name = "Unknown";
                     plant.dbpedia_desc = "Unknown";
                     plant.dbpedia_uri = "";
