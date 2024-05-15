@@ -1,9 +1,14 @@
 @import url("nav.css");
 @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-html, body {
-  padding: 0;
+* {
   margin: 0;
+  padding: 0;
+}
+
+/* ===== LAYOUT STYLING ===== */
+
+html, body {
   height: 100%;
   box-sizing: border-box;
 }
@@ -19,17 +24,54 @@ html, body {
   min-height: 100vh;
   font: 16px "Montserrat", sans-serif;
   background-color: #e2e9f7;
-} 
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  min-height: 100vh;
+  align-content: stretch;
+}
+
+.column {
+  display: flex;
+  flex: 1; /* Ensure all columns equal in height */
+  align-items: stretch; /* Centre content vertically */
+  justify-content: center; /* Centre content horizontally */
+  padding: 0.5em;
+}
+
+#column-hamburger {
+  flex: 1;
+  min-width: 40px;
+  max-width: 40px;
+  padding: 0;
+}
+
+#column-filter {
+  flex: 4;
+}
+
+#column-feed {
+  flex: 34;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+/* ===== FEED POST STYLING ===== */
 
 .block {
+  flex: 1;
   border-radius: 25px;
   display: flex;
   flex-direction: row;
   background-color: #bd8971;
   box-sizing: border-box;
   padding: 10px;
-  margin: 45px 0;
-  box-shadow: 10px 10px 5px rgb(104, 118, 101);
+  margin: 0;
+  box-shadow: 10px 10px 5px rgb(133, 133, 133);
   width: 100%;
 }
 
@@ -41,7 +83,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 17px;
+  border-radius: 1.0625em;
 }
 
 .image-section img {
@@ -71,6 +113,8 @@ html, body {
   background-color: #000;
   margin: 20px 0;
 }
+
+/* ===== FILTER STYLING ===== */
 
 .right-column form {
   display: flex;
