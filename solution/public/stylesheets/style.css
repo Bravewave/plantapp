@@ -68,11 +68,10 @@ html, body {
 .separator {
   width: 100%;
   height: 1px;
-  background-color: #000; /* Adjust color as needed */
+  background-color: #000;
   margin: 20px 0;
 }
 
-/* Additional styling for the right-column filters */
 .right-column form {
   display: flex;
   flex-direction: column;
@@ -86,7 +85,6 @@ html, body {
   margin-top: 5px;
 }
 
-/* Align checkboxes and labels */
 .checkbox-container {
   display: flex;
   align-items: center;
@@ -97,7 +95,6 @@ html, body {
   margin-right: 10px;
 }
 
-/* Styling for the apply button */
 .right-column button {
   margin-top: 15px;
   padding: 10px;
