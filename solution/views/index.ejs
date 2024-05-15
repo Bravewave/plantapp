@@ -13,11 +13,11 @@
             <p><span class="attribute">Uploaded by: </span><%= plant.user_name %></p>
             <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
             <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
-            <p><span class="attribute">Plant scientific name: </span><%= plant_sci_name %></p>
+            <p><span class="attribute">Plant scientific name: </span><%= plant.plant_sci_name %></p>
             <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
             <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
-            <p><span class="attribute">DBPedia Description: </span><%= dbpedia_desc %></p>
-            <p><span class="attribute">DBPedia URI: </span><a href=<%= dbpedia_uri %>><%= dbpedia_uri%></a></p>
+            <p><span class="attribute">DBPedia Description: </span><%= plant.dbpedia_desc %></p>
+            <p><span class="attribute">DBPedia URI: </span><a href=<%= plant.dbpedia_uri %>><%= plant.dbpedia_uri%></a></p>
           </div>
         </div>
         <div class="separator"></div>

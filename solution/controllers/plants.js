@@ -43,8 +43,20 @@ exports.create = function (userData, filePath) {
 // Function to get all plants
 exports.getAll = async () => {
     try {
-        const plants = await plantModel.find();
+        let plants = await plantModel.find();
         return plants;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+};
+
+// Function to get plant's name
+exports.getPlantNames = async () => {
+    try {
+        // Retrieve only the user_name field
+        const plant_names = await plantModel.find().select('plant_name');
+        return plant_names;
     } catch (error) {
         console.error(error);
         return [];

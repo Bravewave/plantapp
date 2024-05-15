@@ -36,12 +36,9 @@ router.get("/test", (req, res) => {
   res.render("testing", { title: "Testing Page" });
 });
 
-router.post('/add', upload.single('plantImg'), function (req, res) {
-	let userData = req.body;
-	let filePath = req.file.path;
-	let result = plants.create(userData, filePath);
-	console.log(result);
 
+
+router.get('/laratest', async (req, res) => {
     // retrieve plant info from DBPedia
     const plant_name = "Rose";
     const resource = `http://dbpedia.org/resource/${plant_name}`;
@@ -61,34 +58,50 @@ router.post('/add', upload.single('plantImg'), function (req, res) {
       FILTER (LANG(?abstract) = "en") .
       FILTER (LANG(?name) = "en") .
       FILTER (LANG(?sci_name) = "en") .
+      
   }`;
 
-    const encodedQuery = encodeURIComponent(sparqlQuery);
+const encodedQuery = encodeURIComponent(sparqlQuery);
 
-    const url = `${endpointUrl}?query=${encodedQuery}&format=json`;
+const url = `${endpointUrl}?query=${encodedQuery}&format=json`;
 
+try {
+    const dbPlants= await plants.getAll();
     fetch(url)
         .then(response => response.json())
         .then(data => {
             let bindings = data.results.bindings;
             if (bindings.length > 0) {
-                res.render('index', {
-                    plant_name:bindings[0].name.value,
-                    plant_sci_name:bindings[0].sci_name ? bindings[0].sci_name.value : "Unknown",
-                    dbpedia_desc: bindings[0].abstract.value,
-                    dbpedia_uri: bindings[0].uri.value
-                    // JSONresult: result
+                dbPlants.map(plant => {
+                    plant.plant_name = bindings[0].name.value;
+                    plant.plant_sci_name = bindings[0].sci_name ? bindings[0].sci_name.value : "Unknown";
+                    plant.dbpedia_desc = bindings[0].abstract.value;
+                    plant.dbpedia_uri = bindings[0].uri.value;
                 });
+                res.render("index", { title: "Plant App", items: dbPlants });
             } else {
-                res.render('index', {
-                    plant_name: "Unknown",
-                    plant_sci_name: "Unknown",
-                    dbpedia_desc: "Unknown",
-                    dbpedia_uri: "Unknown"
+                dbPlants.map(plant => {
+                    plant.plant_name = "Unknown";
+                    plant.plant_sci_name = "Unknown";
+                    plant.dbpedia_desc = "Unknown";
+                    plant.dbpedia_uri = "";
                 });
+                res.render("index", { title: "Plant App", items: dbPlants });
             }
 
         });
+} catch (error) {
+    console.error(error);
+    res.render("index", { title: "Plant App", items: [] });
+}
+});
+
+
+router.post('/add', upload.single('plantImg'), function (req, res) {
+	let userData = req.body;
+	let filePath = req.file.path;
+	let result = plants.create(userData, filePath);
+	console.log(result);
 
     res.redirect('/');
 });
