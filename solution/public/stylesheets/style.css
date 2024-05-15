@@ -23,10 +23,11 @@ html, body {
   flex-direction: row;
   min-height: 100vh;
   font: 16px "Montserrat", sans-serif;
-  background-color: #e2e9f7;
+  background-color: #c4ebd7;
 }
 
 .content {
+  padding: 30px 15px 30px 15px;
   display: flex;
   flex: 1;
   flex-direction: row;
@@ -35,49 +36,64 @@ html, body {
 }
 
 .column {
-  display: flex;
-  flex: 1; /* Ensure all columns equal in height */
-  align-items: stretch; /* Centre content vertically */
-  justify-content: center; /* Centre content horizontally */
-  padding: 0.5em;
+  justify-content: flex-start;
 }
 
 #column-hamburger {
   flex: 1;
-  min-width: 40px;
   max-width: 40px;
   padding: 0;
+  margin-right: 7.5px;
 }
 
 #column-filter {
   flex: 4;
+  margin-left: 7.5px;
 }
 
 #column-feed {
   flex: 34;
   display: flex;
   flex-direction: column;
-  justify-items: center;
+  padding: 0 7.5px 0 7.5px;
+  border: 1px solid rgb(175, 175, 175);
+  border-top: none;
+  border-bottom: none;
+;
 }
 
 /* ===== FEED POST STYLING ===== */
 
 .block {
   flex: 1;
-  border-radius: 25px;
   display: flex;
   flex-direction: row;
-  background-color: #bd8971;
+  background-color: #c4ebd7;
   box-sizing: border-box;
+  max-height: 320px;
   padding: 10px;
   margin: 0;
-  box-shadow: 10px 10px 5px rgb(133, 133, 133);
   width: 100%;
+  border-top: 1px solid rgba(128, 128, 128, 0.75);
+  transition: background-color 0.3s ease-in;
+  transition: box-shadow 0.3s ease-in;
+  transition: transform 0.3s ease;
+}
+
+.block:last-of-type {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.75);;
+}
+
+.block:hover {
+  cursor: pointer;
+  background-color: #9ebdad;
+  box-shadow: 0px 0px 15px 3px rgba(255,255,255,1);
+  transform: scale(1.005);
 }
 
 .image-section {
-  width: 350px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
   overflow: hidden;
   margin-right: 10px;
   display: flex;
@@ -99,19 +115,12 @@ html, body {
   justify-content: center;
 }
 
-.text-section > p {
+.text-section p {
   margin: 0.33em;
 }
 
-.text-section > p > span {
+.text-section p span {
   font-weight: bold;
-}
-
-.separator {
-  width: 100%;
-  height: 1px;
-  background-color: #000;
-  margin: 20px 0;
 }
 
 /* ===== FILTER STYLING ===== */

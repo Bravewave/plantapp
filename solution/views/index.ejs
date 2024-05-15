@@ -2,7 +2,6 @@
 <%- include("partials/nav") %>
         <div class="column" id="column-feed">
           <% if (items.length > 0) { %>
-            <div class="separator"></div>
             <% items.forEach((plant, index) => { %>
               <div class="block">
                 <div class="image-section">
@@ -16,7 +15,6 @@
                   <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
                 </div>
               </div>
-              <div class="separator"></div>
             <% }); %>
           <% } else { %>
             <h1 class="no-posts">No Posts Found!</h1>

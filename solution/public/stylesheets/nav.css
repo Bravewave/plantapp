@@ -33,17 +33,16 @@ html, body {
 }
 
 .content {
-  padding: 20px;
   transition: margin-left 0.3s ease;
 
   > * {
     width: 100%;
-    padding: 1rem;
   }
 }
   
 .sidebar-active .sidebar {
   transform: translateX(0);
+  box-shadow: 7px 1px 7px rgba(0, 0, 0, 0.4);
 }
 
 .sidebar-active .content {
