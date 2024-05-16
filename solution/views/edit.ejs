@@ -1,0 +1,62 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<h1>Edit Plant Information</h1>
+<form action="/edit/<%= plant._id %>" method="POST" enctype="multipart/form-data">
+    <label for="userName">Username:</label>
+    <input type="text" id="userName" name="user_name" value="<%= plant.user_name %>" required><br><br>
+
+    <label for="plantName">Plant Name (optional):</label>
+    <input type="text" id="plantName" name="plant_name" value="<%= plant.plant_name %>"><br><br>
+
+    <label for="dateAndTimeSeen">Date and Time Seen:</label>
+    <input type="datetime-local" id="dateAndTimeSeen" name="dts" value="<%= new Date(plant.dts).toISOString().slice(0,16) %>" required><br><br>
+
+    <label for="lat">Latitude where Plant was found:</label>
+    <input type="number" id="lat" name="lat" min="-90" max="90" step="0.00000001" value="<%= plant.lat %>" required><br><br>
+    <label for="lon">Longitude where Plant was found:</label>
+    <input type="number" id="lon" name="lon" min="-180" max="180" step="0.00000001" value="<%= plant.lon %>" required><br><br>
+
+    <label id="plant_desc" for="plantDesc">Plant Description:</label>
+    <textarea id="plantDesc" name="plant_desc" rows="2" cols="40" required><%= plant.plant_desc %></textarea><br><br>
+
+    <label for="plantHeight">Plant Height(m):</label>
+    <input type="number" id="plantHeight" name="plant_height" min="0" step="0.01" value="<%= plant.plant_height %>" required><br><br>
+    <label for="plantSpread">Plant Spread(m):</label>
+    <input type="number" id="plantSpread" name="plant_spread" min="0" step="0.01" value="<%= plant.plant_spread %>" required><br><br>
+
+    <label for="dbPediaLink">DBPedia Link:</label>
+    <input type="text" id="dbPediaLink" name="db_pedia_link" value="<%= plant.db_pedia_link %>"><br><br>
+
+    <div>Plant Characteristics:</div>
+    <input class="plantChar" type="checkbox" id="flowers" name="flowers" value="Flowers" <%= plant.flowers ? 'checked' : '' %>>
+    <label for="flowers"> Flowers</label>
+    <input class="plantChar" type="checkbox" id="leaves" name="leaves" value="Leaves" <%= plant.leaves ? 'checked' : '' %>>
+    <label for="leaves"> Leaves</label>
+    <input class="plantChar" type="checkbox" id="fruitsSeeds" name="fruits_seeds" value="Fruits/Seeds" <%= plant.fruits_seeds ? 'checked' : '' %>>
+    <label for="fruitsSeeds"> Fruits/Seeds</label>
+    <input class="plantChar" type="checkbox" id="sunExposure" name="sun_exposure" value="Sun Exposure" <%= plant.sun_exposure ? 'checked' : '' %>>
+    <label for="sunExposure"> Sun Exposure</label>
+    <select name="sun_char" id="sunChar" style="<%= plant.sun_exposure ? '' : 'visibility: hidden' %>">
+        <option value="Full Sun" <%= plant.sun_char === 'Full Sun' ? 'selected' : '' %>>Full Sun</option>
+        <option value="Partial Shade" <%= plant.sun_char === 'Partial Shade' ? 'selected' : '' %>>Partial Shade</option>
+        <option value="Full Shade" <%= plant.sun_char === 'Full Shade' ? 'selected' : '' %>>Full Shade</option>
+    </select>
+    <br><br>
+
+    <label for="plantColour">Plant Colour:</label>
+    <input type="text" id="plantColour" name="plant_colour" value="<%= plant.plant_colour %>" required><br><br>
+
+    <label for="status">Identification Status:</label>
+    <select name="status" id="status">
+        <option value="Completed" <%= plant.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+        <option value="In Progress" <%= plant.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+    </select>
+    <br><br>
+
+    <label for="plantImage">Import new plant image (optional)</label><br><br>
+    <input type="file" id="plantImage" name="plantImg" accept="image/*">
+    <br><br>
+
+    <button type="submit">Update</button>
+</form>
+<%- include("partials/foot") %>

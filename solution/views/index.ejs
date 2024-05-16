@@ -25,8 +25,11 @@
                   <h3><%= plant.user_name %></h3>
                   <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
                   <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
+                  <p><span class="attribute">Common name: </span><%= plant.common_name %></p>
+                  <p><span class="attribute">Scientific name: </span><%= plant.plant_sci_name %></p>
                   <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
-                  <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
+                  <p><span class="attribute">User Description: </span><%= plant.plant_desc %></p>
+                  <p><span class="attribute">DBPedia Description: </span><%= plant.dbpedia_desc %></p>
                   <p><span class="attribute">Height: </span><%= plant.plant_height %> m</p>
                   <p><span class="attribute">Spread: </span><%= plant.plant_spread %> m</p>
                   <p><span class="attribute">DBPedia: </span><a href="<%= plant.db_pedia_link %>"><%= plant.db_pedia_link %></a></p>
@@ -36,6 +39,7 @@
                   <p><span class="attribute">Sun Exposure: </span><%= plant.sun_exposure %></p>
                   <p><span class="attribute">Characteristics: </span><%= plant.sun_char %></p>
                   <p><span class="attribute">Plant Colour: </span><%= plant.plant_colour %></p>
+                  <p><span class="attribute">URI: </span><a href=<%= plant.dbpedia_uri %>><%= plant.dbpedia_uri %></a></p>
                 </div>
                 <div class="dialog-right">
                   <h2>Live Chat</h2>
@@ -43,6 +47,12 @@
                 </div>
                 <button class="close">Close</button>
               </dialog>
+
+                <ul>
+                    <li>
+                        <a href="/edit/<%= plant._id %>">Edit</a>
+                    </li>
+                </ul>
             <% }); %>
           <% } else { %>
             <h1 class="no-posts">No Posts Found!</h1>

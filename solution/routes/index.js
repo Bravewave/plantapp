@@ -87,15 +87,37 @@ router.get('/', async (req, res) => {
         });
 });
 
-router.get("/test", (req, res) => {
-  res.render("testing", { title: "Testing Page" });
+router.get("/addplant", (req, res) => {
+  res.render("addPlant", { title: "Add Plant" });
 });
 
 
 
-router.get('/laratest', async (req, res) => {
+// Route to display the edit form
+router.get('/edit/:id', async function (req, res) {
+    try {
+        const plantId = req.params.id;
+        const plantData = await plants.getById(plantId);
+        res.render('edit', { plant: plantData });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching plant data");
+    }
+});
 
-
+// Route to handle the edit form submission
+router.post('/edit/:id', upload.single('plantImg'), async function (req, res) {
+    try {
+        const plantId = req.params.id;
+        let userData = req.body;
+        let filePath = req.file ? req.file.path : null;
+        let result = await plants.update(plantId, userData, filePath);
+        console.log(result);
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error updating plant data");
+    }
 });
 
 
