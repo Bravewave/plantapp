@@ -8,9 +8,9 @@
 - After installation, you can verify that Node.js and npm (Node Package Manager) are installed by opening a command prompt and typing:
 
 #####
-    ```node -v```
+    node -v
 #####
-    ```npm -v```
+    npm -v
 
 This should display the installed versions of Node.js and npm
 
@@ -18,35 +18,35 @@ This should display the installed versions of Node.js and npm
 - Can use **Homebrew** to install Node.js. If you don’t have Homebrew installed, you can
 install it by following the instructions on the Homebrew website.
 - Once Homebrew is installed, open a terminal and run:
-
-    ```brew install node```
+#####
+    brew install node
 - After installation, verify Node.js and npm by typing:
-
-    ```node -v```
-
-    ```npm -v```
+#####
+    node -v
+#####
+    npm -v
 
 ***3. Linux (Debian/Ubuntu)***
 - Open a terminal and run the following commands:
-
-    ```sudo apt update```
-
-    ```sudo apt install nodejs npm```
+#####
+    sudo apt update
+#####
+    sudo apt install nodejs npm
 - After installation, verify Node.js and npm by typing:
-
-    ```node -v```
-
-    ```npm -v```
+#####
+    node -v
+#####
+    npm -v
 
 ***4. Linux (Fedora)***
 - Open a terminal and run the following commands:
-
-    ```sudo dnf install nodejs```
+#####
+    sudo dnf install nodejs
 - After installation, verify Node.js and npm by typing:
-
-    ```node -v```
-
-    ```npm -v```
+#####
+    node -v
+#####
+    npm -v
 
 ***5.  Other Linux Distributions:***
 - The package manager and installation steps may vary depending on your Linux distribution.
@@ -69,10 +69,10 @@ Consult your distribution’s documentation for specific instructions.
 - Visit the JetBrains website and go to the WebStorm download page.
 - Download the Linux version of the installer (either a tar.gz or .deb package).
 - If you download a .deb package, you can install it using a package manager such as dpkg. For example:
-
-    ```sudo dpkg -i webstorm-*.deb```
-
-    ```sudo apt-get install -f # to install dependencies```
+#####
+    sudo dpkg -i webstorm-*.deb
+#####
+    sudo apt-get install -f # to install dependencies
 
 - If you download a .tar.gz package, you can extract it and run WebStorm from the extracted
 directory
@@ -95,9 +95,12 @@ directory
     - Open a *Command Prompt* window as *an administrator*
     - Navigate to the bin directory of your MongoDB installation. The **default location** is typically *C:\Program Files\MongoDB\Server\\**version**\bin*. (Replace ***version*** with your actual MongoDB version number).
     - Run the following command:
-```mongod --config="<path\_to\_your\_config\_file>"```
-Replace **<path_to_your_config_file>** with the actual path to your configuration file. If you
-haven’t created one, you can use the default settings by omitting the –config argument.
+    #####
+        mongod --config="<path\_to\_your\_config\_file>"
+
+    Replace **<path_to_your_config_file>** with the actual path to your configuration file. 
+    
+    If you haven’t created one, you can use the default settings by omitting the *–config* argument.
 
 ***2. MacOS***
 - There is a detailed tutorial on the MongoDB website - [install-mongodb-on-os-x](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/).
@@ -106,25 +109,25 @@ haven’t created one, you can use the default settings by omitting the –confi
 
 - Installing **MongoDB 7.0 Community Edition**
     - Tap the MongoDB Homebrew Tap to download the official Homebrew formula for MongoDB and the Database Tools, by running the following command in your macOS Terminal: 
-    
-        ```brew tap mongodb/brew```
+    #####
+        brew tap mongodb/brew
 
     - If you have already done this for a previous installation of MongoDB, you can skip this step. To update Homebrew and all existing formulae: 
-    
-        ```brew update```
+    #####
+        brew update
     - To install MongoDB, run the following command in your macOS Terminal application: 
-    
-        ```brew install mongodb-community@7.0```
+    #####
+        brew install mongodb-community@7.0
 
 -  Installing **MongoDB Compass (GUI)**
     - In order to install MongoDB compass, you can use the following command: 
-    
-        ```brew install --cask mongodb-compass```
+    #####
+        brew install --cask mongodb-compass
 
 - Starting the **MongoDB Server**
     - In order to start the MongoDB server, you can use the command: 
-    
-        ```brew services start mongodb-community```
+    #####
+        brew services start mongodb-community
 
 ***3. Linux***
 - In order to install MongoDB you can follow the [tutorial](https://www.mongodb.com/docs/manual/administration/install-on-linux/) available on the MongoDB website.
