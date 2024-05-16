@@ -4,6 +4,9 @@
     <% if (title === "Add Plant") { %>
     <script src="/javascripts/addPlant.js" defer></script>
     <% } %>
+    <% if (title === "Plant App") { %>
+      <script src="/javascripts/dialog.js"></script>
+      <% } %>
     <script>
       if('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js', { scope: '/' });

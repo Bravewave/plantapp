@@ -3,7 +3,7 @@
         <div class="column" id="column-feed">
           <% if (items.length > 0) { %>
             <% items.forEach((plant, index) => { %>
-              <div class="block">
+              <div class="block" data-dialog-id="<%= index %>">
                 <div class="image-section">
                   <img src="/<%= plant.img %>" alt="Image <%= index + 1 %>">
                 </div>
@@ -15,6 +15,20 @@
                   <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
                 </div>
               </div>
+
+              <dialog id="<%= index %>">
+                <div class="dialog-content">
+                  <div class="image-section">
+                    <img src="/<%= plant.img %>" alt="Image <%= index + 1 %>">
+                  </div>
+                  <h1><%= plant.plant_name %></h1>
+                  <h3><%= plant.user_name %></h3>
+                  <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
+                  <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
+                  <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
+                  <button class="close">Close</button>
+                </div>
+              </dialog>
             <% }); %>
           <% } else { %>
             <h1 class="no-posts">No Posts Found!</h1>
