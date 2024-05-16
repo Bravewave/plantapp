@@ -19,30 +19,9 @@ const dbPlants = plants.getAll();
 
 /* GET home page. */
 router.get('/', async (req, res) => {
-  try {
-    const dbPlants = await plants.getAll();
-    console.log(dbPlants);
-    res.render("index", { title: "Plant App", items: dbPlants });
-  } catch (error) {
-    console.error(error);
-    res.render("index", { title: "Plant App", items: [] });
-  }
-});
-
-router.get('/addplant', function(req, res) {
-  res.render('addPlant', { title: 'Add Plant' });
-});
-
-router.get("/test", (req, res) => {
-  res.render("testing", { title: "Testing Page" });
-});
-
-
-
-router.get('/laratest', async (req, res) => {
-    // const dbPlantNames= await plants.getPlantNames() // get list of plant names
-    // console.log(dbPlantNames);
+    // get all plants created
     let dbPlants= await plants.getAll();
+
     const fetchPromises = dbPlants.map(plant => {
         let plant_namee = plant.plant_name;
 
@@ -61,12 +40,14 @@ router.get('/laratest', async (req, res) => {
               OPTIONAL { ?uri dbp:genus ?sci_name }
               ?uri rdfs:comment ?description .
               FILTER (lang(?commonName) = 'en')
+              
               FILTER ((CONTAINS(?description, "common")) && 
                       (CONTAINS(LCASE(?description), LCASE("${plant_namee}"))) ||
                       (CONTAINS(LCASE(?description), LCASE("${plant_namee}"))) 
                       )
           
-        }`;
+        }
+        LIMIT 1`;
 
         const encodedQuery = encodeURIComponent(sparqlQuery);
 
@@ -89,8 +70,6 @@ router.get('/laratest', async (req, res) => {
                     plant.dbpedia_desc = "Unknown";
                     plant.dbpedia_uri = "";
                 }
-
-                console.log("Updated:", dbPlants);
             })
             .catch(error => {
                 console.error("Error fetching data for plant:", plant_namee, error);
@@ -100,13 +79,22 @@ router.get('/laratest', async (req, res) => {
 
     Promise.all(fetchPromises)
         .then(() => {
-            // Print the updated dbPlants array
             res.render("index", { title: "Plant App", items: dbPlants });
         })
         .catch(error => {
             console.error("Error gathering data:", error);
             res.render("index", { title: "Plant App", items: [] });
-    });
+        });
+});
+
+router.get("/test", (req, res) => {
+  res.render("testing", { title: "Testing Page" });
+});
+
+
+
+router.get('/laratest', async (req, res) => {
+
 
 });
 
