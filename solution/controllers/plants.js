@@ -14,10 +14,10 @@ exports.create = function (userData, filePath) {
         plant_height: userData.plant_height,
         plant_spread: userData.plant_spread,
         db_pedia_link: userData.db_pedia_link,
-        flowers: userData.flowers,
-        leaves: userData.leaves,
-        fruits_seeds: userData.fruits_seeds,
-        sun_exposure: userData.sun_exposure,
+        flowers: !!userData.flowers, 
+        leaves: !!userData.leaves, 
+        fruits_seeds: !!userData.fruits_seeds, 
+        sun_exposure: !!userData.sun_exposure, 
         sun_char: userData.sunChar,
         plant_colour: userData.plant_colour,
         status: userData.status,
@@ -44,6 +44,36 @@ exports.create = function (userData, filePath) {
 exports.getAll = async () => {
     try {
         const plants = await plantModel.find();
+        return plants;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+};
+
+// Function to filter plants
+exports.getFiltered = async (filters, sortOrder) => {
+    try {
+        let query = {};
+
+        if (filters.length > 0) {
+            filters.forEach(filter => {
+                query[filter] = true;
+            });
+        }
+
+        // Fetch filtered plants from the database
+        let plants = await plantModel.find(query);
+
+        // Sort the plants by date
+        plants.sort((a, b) => {
+            if (sortOrder === 'newest') {
+                return new Date(b.dts) - new Date(a.dts);
+            } else {
+                return new Date(a.dts) - new Date(b.dts);
+            }
+        });
+
         return plants;
     } catch (error) {
         console.error(error);

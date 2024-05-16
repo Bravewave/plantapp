@@ -28,6 +28,20 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+router.post('/filter', async (req, res) => {
+  try {
+    const { sort_order, traits } = req.body;
+    const filters = Array.isArray(traits) ? traits : (traits ? [traits] : []);
+    const filteredPlants = await plants.getFiltered(filters, sort_order);
+    res.json({ items: filteredPlants }); // Send JSON response for AJAX
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ items: [] });
+  }
+});
+
+
 router.get('/addplant', function(req, res) {
   res.render('addPlant', { title: 'Add Plant' });
 });
