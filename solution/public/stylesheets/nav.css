@@ -33,34 +33,16 @@ html, body {
 }
 
 .content {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-  padding: 20px;
   transition: margin-left 0.3s ease;
-  align-content: stretch;
 
   > * {
     width: 100%;
-    padding: 1rem;
   }
 }
-
-#column-hamburger {
-    width: 5%;
-}
-
-#column-feed {
-    width: 80%;
-}
-
-#column-filter {
-    order: 15%;
-}
-
   
 .sidebar-active .sidebar {
   transform: translateX(0);
+  box-shadow: 7px 1px 7px rgba(0, 0, 0, 0.4);
 }
 
 .sidebar-active .content {
