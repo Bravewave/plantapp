@@ -17,17 +17,31 @@
               </div>
 
               <dialog id="<%= index %>">
-                <div class="dialog-content">
+                <div class="dialog-left">
                   <div class="image-section">
                     <img src="/<%= plant.img %>" alt="Image <%= index + 1 %>">
                   </div>
                   <h1><%= plant.plant_name %></h1>
                   <h3><%= plant.user_name %></h3>
                   <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
+                  <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
                   <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
                   <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
-                  <button class="close">Close</button>
+                  <p><span class="attribute">Height: </span><%= plant.plant_height %> m</p>
+                  <p><span class="attribute">Spread: </span><%= plant.plant_spread %> m</p>
+                  <p><span class="attribute">DBPedia: </span><a href="<%= plant.db_pedia_link %>"><%= plant.db_pedia_link %></a></p>
+                  <p><span class="attribute">Flowers: </span><%= plant.flowers %></p>
+                  <p><span class="attribute">Leaves: </span><%= plant.leaves %></p>
+                  <p><span class="attribute">Fruits/Seeds: </span><%= plant.fruits_seeds %></p>
+                  <p><span class="attribute">Sun Exposure: </span><%= plant.sun_exposure %></p>
+                  <p><span class="attribute">Characteristics: </span><%= plant.sun_char %></p>
+                  <p><span class="attribute">Plant Colour: </span><%= plant.plant_colour %></p>
                 </div>
+                <div class="dialog-right">
+                  <h2>Live Chat</h2>
+                  <p>Chat goes here</p>
+                </div>
+                <button class="close">Close</button>
               </dialog>
             <% }); %>
           <% } else { %>
