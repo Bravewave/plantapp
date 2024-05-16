@@ -7,11 +7,12 @@
 - Run the installer and follow the on-screen instructions.
 - After installation, you can verify that Node.js and npm (Node Package Manager) are installed by opening a command prompt and typing:
 
+#####
     ```node -v```
-
+#####
     ```npm -v```
 
-    This should display the installed versions of Node.js and npm
+This should display the installed versions of Node.js and npm
 
 ***2. MacOS***
 - Can use **Homebrew** to install Node.js. If you don’t have Homebrew installed, you can
