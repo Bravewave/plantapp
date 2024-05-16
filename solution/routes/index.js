@@ -16,6 +16,7 @@ const upload = multer({ storage: storage });
 
 const dbPlants = plants.getAll();
 
+
 /* GET home page. */
 router.get('/', async (req, res) => {
   try {
@@ -39,65 +40,76 @@ router.get("/test", (req, res) => {
 
 
 router.get('/laratest', async (req, res) => {
-    const dbPlantNames= await plants.getPlantNames() // get list of plant names
-    console.log(dbPlantNames);
+    // const dbPlantNames= await plants.getPlantNames() // get list of plant names
+    // console.log(dbPlantNames);
+    let dbPlants= await plants.getAll();
+    const fetchPromises = dbPlants.map(plant => {
+        let plant_namee = plant.plant_name;
+        plant_namee = plant_namee.charAt(0).toUpperCase() + plant_namee.slice(1).toLowerCase(); // upper case the first char of the string
 
-    // retrieve plant info from DBPedia
-    let plant_namee = "melinis repens";
-    plant_namee = plant_namee.charAt(0).toUpperCase() + plant_namee.slice(1); // upper case the first char of the string
-    // const resource = `http://dbpedia.org/resource/${plant_namee}`;
-    const endpointUrl = 'https://dbpedia.org/sparql';
+        // const resource = `http://dbpedia.org/resource/${plant_namee}`;
+        const endpointUrl = 'https://dbpedia.org/sparql';
 
-    const sparqlQuery = `
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX dbo: <http://dbpedia.org/ontology/>
-        PREFIX dbp: <http://dbpedia.org/property/>
-        
-        SELECT ?commonName ?sci_name ?description ?uri
-        WHERE {
-          ?uri rdf:type dbo:Plant .
-          ?uri dbp:name ?commonName .
-          OPTIONAL { ?uri dbp:genus ?sci_name }
-          ?uri rdfs:comment ?description .
-          FILTER (lang(?commonName) = 'en')
-          FILTER ((CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee}")) ||
-                       (CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee.toLowerCase()}")) )
-      
-  }`;
+        const sparqlQuery = `
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX dbo: <http://dbpedia.org/ontology/>
+            PREFIX dbp: <http://dbpedia.org/property/>
+            
+            SELECT ?commonName ?sci_name ?description ?uri
+            WHERE {
+              ?uri rdf:type dbo:Plant .
+              ?uri dbp:name ?commonName .
+              OPTIONAL { ?uri dbp:genus ?sci_name }
+              ?uri rdfs:comment ?description .
+              FILTER (lang(?commonName) = 'en')
+              FILTER ((CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee}")) ||
+                      (CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee.toLowerCase()}")) ||
+                      (CONTAINS(?description, "${plant_namee}")) )
+          
+        }`;
 
-const encodedQuery = encodeURIComponent(sparqlQuery);
+        const encodedQuery = encodeURIComponent(sparqlQuery);
 
-const url = `${endpointUrl}?query=${encodedQuery}&format=json`;
+        const url = `${endpointUrl}?query=${encodedQuery}&format=json`;
 
-try {
-    const dbPlants= await plants.getAll();
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            let bindings = data.results.bindings;
-            if (bindings.length > 0) {
-                dbPlants.map(plant => {
+        return fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Store the fetched data in the plant object
+                let bindings = data.results.bindings;
+                // console.log(bindings);
+                if (bindings.length > 0) {
                     plant.common_name = bindings[0].commonName.value;
                     plant.plant_sci_name = bindings[0].sci_name ? bindings[0].sci_name.value : "Unknown";
                     plant.dbpedia_desc = bindings[0].description.value;
                     plant.dbpedia_uri = bindings[0].uri.value;
-                });
-                res.render("index", { title: "Plant App", items: dbPlants });
-            } else {
-                dbPlants.map(plant => {
+                } else {
                     plant.common_name = "Unknown";
                     plant.plant_sci_name = "Unknown";
                     plant.dbpedia_desc = "Unknown";
                     plant.dbpedia_uri = "";
-                });
-                res.render("index", { title: "Plant App", items: dbPlants });
-            }
+                }
 
-        });
-} catch (error) {
-    console.error(error);
-    res.render("index", { title: "Plant App", items: [] });
-}
+                console.log("Updated:", dbPlants);
+            })
+            .catch(error => {
+                console.error("Error fetching data for plant:", plant_namee, error);
+                plant.error = error.message;
+            });
+    });
+
+    Promise.all(fetchPromises)
+        .then(() => {
+            // Print the updated dbPlants array
+            res.render("index", { title: "Plant App", items: dbPlants });
+        })
+        .catch(error => {
+            console.error("Error gathering data:", error);
+    });
+
+
+
+
 });
 
 

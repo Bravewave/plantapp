@@ -50,15 +50,3 @@ exports.getAll = async () => {
         return [];
     }
 };
-
-// Function to get plant's name
-exports.getPlantNames = async () => {
-    try {
-        // Retrieve only the user_name field
-        const plant_names = await plantModel.find().select('plant_name');
-        return plant_names;
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-};
