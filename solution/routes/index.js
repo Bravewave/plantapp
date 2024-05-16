@@ -39,25 +39,26 @@ router.get("/test", (req, res) => {
 
 
 router.get('/laratest', async (req, res) => {
+    const dbPlantNames= await plants.getPlantNames() // get list of plant names
+    console.log(dbPlantNames);
+
     // retrieve plant info from DBPedia
     const plant_namee = "Rose";
     const resource = `http://dbpedia.org/resource/${plant_namee}`;
     const endpointUrl = 'https://dbpedia.org/sparql';
 
     const sparqlQuery = `
-      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-      PREFIX dbo: <http://dbpedia.org/ontology/>
-      PREFIX dbp:<http://dbpedia.org/property/>
-      
-      SELECT ?name ?sci_name ?abstract ?uri
-      WHERE {
-      <${resource}> rdfs:label ?name .
-      OPTIONAL {<${resource}> dbp:taxon ?sci_name .}
-      <${resource}> dbo:abstract ?abstract .
-      BIND (<${resource}> AS ?uri)
-      FILTER (LANG(?abstract) = "en") .
-      FILTER (LANG(?name) = "en") .
-      FILTER (LANG(?sci_name) = "en") .
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX dbp: <http://dbpedia.org/property/>
+        
+        SELECT ?name ?sci_name ?description ?uri
+        WHERE {
+          ?uri rdf:type dbo:Plant .
+          ?uri dbp:name ?commonName .
+          OPTIONAL { ?uri dbp:genus ?sci_name }
+          ?uri rdfs:comment ?description .
+          FILTER (lang(?commonName) = 'en' && (CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee}")))
       
   }`;
 
@@ -74,7 +75,7 @@ try {
             if (bindings.length > 0) {
                 dbPlants.map(plant => {
                     plant.plant_sci_name = bindings[0].sci_name ? bindings[0].sci_name.value : "Unknown";
-                    plant.dbpedia_desc = bindings[0].abstract.value;
+                    plant.dbpedia_desc = bindings[0].description.value;
                     plant.dbpedia_uri = bindings[0].uri.value;
                 });
                 res.render("index", { title: "Plant App", items: dbPlants });
