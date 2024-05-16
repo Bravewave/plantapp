@@ -45,7 +45,6 @@ router.get('/laratest', async (req, res) => {
     let dbPlants= await plants.getAll();
     const fetchPromises = dbPlants.map(plant => {
         let plant_namee = plant.plant_name;
-        plant_namee = plant_namee.charAt(0).toUpperCase() + plant_namee.slice(1).toLowerCase(); // upper case the first char of the string
 
         // const resource = `http://dbpedia.org/resource/${plant_namee}`;
         const endpointUrl = 'https://dbpedia.org/sparql';
@@ -62,9 +61,10 @@ router.get('/laratest', async (req, res) => {
               OPTIONAL { ?uri dbp:genus ?sci_name }
               ?uri rdfs:comment ?description .
               FILTER (lang(?commonName) = 'en')
-              FILTER ((CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee}")) ||
-                      (CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee.toLowerCase()}")) ||
-                      (CONTAINS(?description, "${plant_namee}")) )
+              FILTER ((CONTAINS(?description, "common")) && 
+                      (CONTAINS(LCASE(?description), LCASE("${plant_namee}"))) ||
+                      (CONTAINS(LCASE(?description), LCASE("${plant_namee}"))) 
+                      )
           
         }`;
 
@@ -105,10 +105,8 @@ router.get('/laratest', async (req, res) => {
         })
         .catch(error => {
             console.error("Error gathering data:", error);
+            res.render("index", { title: "Plant App", items: [] });
     });
-
-
-
 
 });
 
