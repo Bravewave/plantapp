@@ -43,8 +43,9 @@ router.get('/laratest', async (req, res) => {
     console.log(dbPlantNames);
 
     // retrieve plant info from DBPedia
-    const plant_namee = "Rose";
-    const resource = `http://dbpedia.org/resource/${plant_namee}`;
+    let plant_namee = "melinis repens";
+    plant_namee = plant_namee.charAt(0).toUpperCase() + plant_namee.slice(1); // upper case the first char of the string
+    // const resource = `http://dbpedia.org/resource/${plant_namee}`;
     const endpointUrl = 'https://dbpedia.org/sparql';
 
     const sparqlQuery = `
@@ -52,13 +53,15 @@ router.get('/laratest', async (req, res) => {
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbp: <http://dbpedia.org/property/>
         
-        SELECT ?name ?sci_name ?description ?uri
+        SELECT ?commonName ?sci_name ?description ?uri
         WHERE {
           ?uri rdf:type dbo:Plant .
           ?uri dbp:name ?commonName .
           OPTIONAL { ?uri dbp:genus ?sci_name }
           ?uri rdfs:comment ?description .
-          FILTER (lang(?commonName) = 'en' && (CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee}")))
+          FILTER (lang(?commonName) = 'en')
+          FILTER ((CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee}")) ||
+                       (CONTAINS(?description, "common")) && (CONTAINS(?description, "${plant_namee.toLowerCase()}")) )
       
   }`;
 
@@ -74,6 +77,7 @@ try {
             let bindings = data.results.bindings;
             if (bindings.length > 0) {
                 dbPlants.map(plant => {
+                    plant.common_name = bindings[0].commonName.value;
                     plant.plant_sci_name = bindings[0].sci_name ? bindings[0].sci_name.value : "Unknown";
                     plant.dbpedia_desc = bindings[0].description.value;
                     plant.dbpedia_uri = bindings[0].uri.value;
@@ -81,6 +85,7 @@ try {
                 res.render("index", { title: "Plant App", items: dbPlants });
             } else {
                 dbPlants.map(plant => {
+                    plant.common_name = "Unknown";
                     plant.plant_sci_name = "Unknown";
                     plant.dbpedia_desc = "Unknown";
                     plant.dbpedia_uri = "";
