@@ -146,7 +146,7 @@ directory
 2. Navigate to ***plantapp/solution/package.json***
 3. Click play/run button on next to "**start**"
 
-### Run the website on broswer
-1. Open a web broswer
+### Run the website on browser
+1. Open a web browser
 2. Insert **http://localhost:3000/** in URL field
 3. The website is now running
