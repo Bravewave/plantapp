@@ -43,7 +43,7 @@ exports.create = function (userData, filePath) {
 // Function to get all plants
 exports.getAll = async () => {
     try {
-        const plants = await plantModel.find();
+        const plants = await plantModel.find().sort({ dts: -1 }); 
         return plants;
     } catch (error) {
         console.error(error);

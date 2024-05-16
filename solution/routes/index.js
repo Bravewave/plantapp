@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 
 router.post('/filter', async (req, res) => {
   try {
-    const { sort_order, traits } = req.body;
+    const { sort_order = 'newest', traits } = req.body;
     const filters = Array.isArray(traits) ? traits : (traits ? [traits] : []);
     const filteredPlants = await plants.getFiltered(filters, sort_order);
     res.json({ items: filteredPlants }); // Send JSON response for AJAX
