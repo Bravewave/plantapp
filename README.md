@@ -129,7 +129,7 @@ haven’t created one, you can use the default settings by omitting the –confi
 - In order to install MongoDB you can follow the [tutorial](https://www.mongodb.com/docs/manual/administration/install-on-linux/) available on the MongoDB website.
 
 ## Running Instructions
-### Set up MongoDB
+### Set up MongoDB database
 1. Run MongoDB Compass app
 2. In *New Connection*, put **mongodb://localhost:27017/** in URI
 3. Connect
@@ -141,3 +141,8 @@ haven’t created one, you can use the default settings by omitting the –confi
 1. In Webstorm, open the code file
 2. Navigate to ***plantapp/solution/package.json***
 3. Click play/run button on next to "**start**"
+
+### Run the website on broswer
+1. Open a web broswer
+2. Insert **http://localhost:3000/** in URL field
+3. The website is now running
