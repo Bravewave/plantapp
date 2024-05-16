@@ -14,13 +14,13 @@ let PlantSchema = new Schema(
         plant_desc: { type: String, required: true, max: 300 },
         plant_height: { type: Number, required: true },
         plant_spread: { type: Number, required: true },
-        db_pedia_link: { type: String, required: false, max: 300 },
         flowers: { type: String, required: false, max: 10 },
         leaves: { type: String, required: false, max: 10 },
         fruits_seeds: { type: String, required: false, max: 10 },
         sun_exposure: { type: String, required: false, max: 10 },
         sun_char: { type: String, required: false, max: 30 },
         plant_colour: { type: String, required: true, max: 40 },
+        status: {type:String, required: true, max: 20},
         // Define the img field with type String
         img: { type: String }
     }

@@ -13,7 +13,6 @@ exports.create = function (userData, filePath) {
         plant_desc: userData.plant_desc,
         plant_height: userData.plant_height,
         plant_spread: userData.plant_spread,
-        db_pedia_link: userData.db_pedia_link,
         flowers: userData.flowers,
         leaves: userData.leaves,
         fruits_seeds: userData.fruits_seeds,

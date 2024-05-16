@@ -87,39 +87,41 @@ router.get('/', async (req, res) => {
         });
 });
 
+
+
+// Route to render the edit plant form
+router.get('/edit/:id', async (req, res) => {
+    let id = req.params.id;
+
+    try {
+        const plant = await plants.getById(id);
+        console.log("Plant", plant);
+        // Check if the status is "In Progress" before allowing edit
+        if (plant.status === 'In Progress') {
+            res.render('editPlant', { title: 'Edit Plant', plant });
+        } else {
+            // If status is not "In Progress", redirect back with a message
+            res.redirect(`/`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+// Route to handle the form submission to edit a plant
+router.post('/edit/:id', upload.single('plantImg'), async (req, res) => {
+    let userData = req.body;
+    let filePath = req.file ? req.file.path : null;  // Handle the case where no new file is uploaded
+    let result = await plants.update(req.params.id, userData, filePath);
+    console.log(result);
+
+    res.redirect('/');
+});
+
+
 router.get("/addplant", (req, res) => {
   res.render("addPlant", { title: "Add Plant" });
 });
-
-
-
-// Route to display the edit form
-router.get('/edit/:id', async function (req, res) {
-    try {
-        const plantId = req.params.id;
-        const plantData = await plants.getById(plantId);
-        res.render('edit', { plant: plantData });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error fetching plant data");
-    }
-});
-
-// Route to handle the edit form submission
-router.post('/edit/:id', upload.single('plantImg'), async function (req, res) {
-    try {
-        const plantId = req.params.id;
-        let userData = req.body;
-        let filePath = req.file ? req.file.path : null;
-        let result = await plants.update(plantId, userData, filePath);
-        console.log(result);
-        res.redirect('/');
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error updating plant data");
-    }
-});
-
 
 router.post('/add', upload.single('plantImg'), function (req, res) {
 	let userData = req.body;
