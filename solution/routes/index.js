@@ -116,7 +116,7 @@ router.get('/edit/:id', async (req, res) => {
             res.render('editPlant', { title: 'Edit Plant', plant });
         } else {
             // If status is not "In Progress", redirect back with a message
-            res.redirect(`/`);
+            res.redirect(`/feed`);
         }
     } catch (error) {
         console.error(error);
