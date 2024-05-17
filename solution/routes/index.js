@@ -91,6 +91,21 @@ router.get('/feed', async (req, res) => {
         });
 });
 
+router.post('/addChatMessage', async (req, res) => {
+  try {
+    const { plantId, user_name, message } = req.body;
+    const plant = await plants.findById(plantId);
+    if (!plant) {
+      return res.status(404).send('Plant not found');
+    }
+    plant.chatMessages.push({ user_name, message });
+    await plant.save();
+    res.status(200).send('Message added');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 router.post('/filter', async (req, res) => {
   try {
