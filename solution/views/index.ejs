@@ -1,85 +1,13 @@
 <%- include("partials/head") %>
 <%- include("partials/nav") %>
-        <div class="column" id="column-feed">
-          <% if (items.length > 0) { %>
-            <% items.forEach((plant, index) => { %>
-              <div class="block" data-dialog-id="<%= index %>">
-                <div class="image-section">
-                  <img src="/<%= plant.img %>" alt="Image <%= index + 1 %>">
-                </div>
-                <div class="text-section">
-                  <p><span class="attribute">Uploaded by: </span><%= plant.user_name %></p>
-                  <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
-                  <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
-                  <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
-                  <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
-                </div>
-              </div>
+    <div class="column" id="column-username">
+      <div class="welcome">
+        <h1>Welcome to PlantApp!</h1>
+        <p>Please enter your username:</p>
 
-              <dialog id="<%= index %>">
-                <div class="dialog-left">
-                  <div class="image-section">
-                    <img src="/<%= plant.img %>" alt="Image <%= index + 1 %>">
-                  </div>
-                  <h1><%= plant.plant_name %></h1>
-                  <h3><%= plant.user_name %></h3>
-                  <p><span class="attribute">Date and time: </span><%= new Date(plant.dts).toLocaleString() %></p>
-                  <p><span class="attribute">Plant name: </span><%= plant.plant_name %></p>
-                  <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
-                  <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
-                  <p><span class="attribute">Height: </span><%= plant.plant_height %> m</p>
-                  <p><span class="attribute">Spread: </span><%= plant.plant_spread %> m</p>
-                  <p><span class="attribute">DBPedia: </span><a href="<%= plant.db_pedia_link %>"><%= plant.db_pedia_link %></a></p>
-                  <p><span class="attribute">Flowers: </span><%= plant.flowers %></p>
-                  <p><span class="attribute">Leaves: </span><%= plant.leaves %></p>
-                  <p><span class="attribute">Fruits/Seeds: </span><%= plant.fruits_seeds %></p>
-                  <p><span class="attribute">Sun Exposure: </span><%= plant.sun_exposure %></p>
-                  <p><span class="attribute">Characteristics: </span><%= plant.sun_char %></p>
-                  <p><span class="attribute">Plant Colour: </span><%= plant.plant_colour %></p>
-                </div>
-                <div class="dialog-right">
-                  <h2>Live Chat</h2>
-                  <p>Chat goes here</p>
-                </div>
-                <button class="close">Close</button>
-              </dialog>
-                <ul>
-                  <li>
-                    <a href="/edit/<%= plant._id %>">Edit</a>
-                  </li>
-                </ul>
-                <% }); %>
-                <% } else { %>
-                  <h1 class="no-posts">No Posts Found!</h1>
-                <% } %>
-              </div>
-              <div class="column" id="column-filter">
-                <h2>Filters</h2>
-                <form id="filter-form" action="/filter" method="POST">
-                  <label for="sortOrder">Sort By:</label>
-                  <select id="sortOrder" name="sort_order">
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                  </select><br><br>
-                  <div>Checkbox Options:</div>
-                  <div class="checkbox-container">
-                    <input type="checkbox" id="flowers" name="traits" value="flowers">
-                    <label for="flowers">Flowers</label>
-                  </div>
-                  <div class="checkbox-container">
-                    <input type="checkbox" id="leaves" name="traits" value="leaves">
-                    <label for="leaves">Leaves</label>
-                  </div>
-                  <div class="checkbox-container">
-                    <input type="checkbox" id="fruits_seeds" name="traits" value="fruits_seeds">
-                    <label for="fruits_seeds">Fruits/Seeds</label>
-                  </div>
-                  <div class="checkbox-container">
-                    <input type="checkbox" id="sun_exposure" name="traits" value="sun_exposure">
-                    <label for="sun_exposure">Sun Exposure</label>
-                  </div>
-                  <br>
-                  <button type="submit">Apply</button>
-                </form>
-              </div>
+        <form id="username-form">
+          <input type="text" id="username" name="username" placeholder="Username..." required>
+        </form>
+      </div>
+    </div>
 <%- include("partials/foot") %>
