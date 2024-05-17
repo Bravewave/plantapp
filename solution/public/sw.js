@@ -56,8 +56,6 @@ self.addEventListener('fetch', function(event) {
                     if (response) {
                         return response;
                     }
-                    // Optionally handle the case when the response is not in the cache
-                    // and the network is unavailable. Return a default fallback or a custom error message
                     console.log('Service Worker: Fetching failed; no network and no cache:', event.request.url);
                     // Return a default fallback (if any)
                 });
