@@ -14,6 +14,7 @@
                   <p><span class="attribute">Location: </span><%= plant.lat %>, <%= plant.lon %></p>
                   <p><span class="attribute">Description: </span><%= plant.plant_desc %></p>
                 </div>
+                <a class="edit-post" href="/edit/<%= plant._id %>">Edit</a>
               </div>
 
               <dialog id="<%= index %>">
@@ -43,11 +44,6 @@
                 </div>
                 <button class="close">Close</button>
               </dialog>
-                <ul>
-                  <li>
-                    <a href="/edit/<%= plant._id %>">Edit</a>
-                  </li>
-                </ul>
                 <% }); %>
                 <% } else { %>
                   <h1 class="no-posts">No Posts Found!</h1>
