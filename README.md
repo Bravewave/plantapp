@@ -120,7 +120,8 @@ Consult your distribution’s documentation for specific instructions.
 ### Run the code
 1. Open a terminal
 2. Navigate to the solution using **cd \plantapp\solution**
-3. Run by using **npm run start**
+3. Run **npm install** to ensure everything is installed correctly
+4. Run by using **npm run start**
 
 ### Run the website on browser
 1. Open a web browser
