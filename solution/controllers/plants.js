@@ -80,3 +80,25 @@ exports.getFiltered = async (filters, sortOrder) => {
         return [];
     }
 };
+
+exports.getById = async function (id) {
+    try {
+        return await plantModel.findById(id).exec();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+exports.update = async function (id, userData, filePath) {
+    try {
+        const updateData = { ...userData };
+        if (filePath) {
+            updateData.plantImg = filePath;
+        }
+        return await plantModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
