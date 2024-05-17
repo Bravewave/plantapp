@@ -144,7 +144,7 @@ router.post('/add', upload.single('plantImg'), function (req, res) {
 	let result = plants.create(userData, filePath);
 	console.log(result);
 
-  res.redirect('/');
+  res.redirect('/feed');
 });
 
 module.exports = router;
