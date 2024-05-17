@@ -52,30 +52,6 @@ install it by following the instructions on the Homebrew website.
 - The package manager and installation steps may vary depending on your Linux distribution.
 Consult your distribution’s documentation for specific instructions.
 
-###  Installing Webstorm
-***1. Windows***
-- Visit the JetBrains website and go to the WebStorm download page.
-- Download the Windows version of the installer.
-- Run the installer executable.
-- Follow the on-screen instructions to complete the installation.
-
-***2. MacOS***
-- Visit the JetBrains website and go to the WebStorm download page.
-- Download the macOS version of the installer (DMG file).
-- Open the DMG file, and then drag the WebStorm icon to the Applications folder.
-- Once the copy is complete, you can launch WebStorm from the Applications folder
-
-***3. Linux***
-- Visit the JetBrains website and go to the WebStorm download page.
-- Download the Linux version of the installer (either a tar.gz or .deb package).
-- If you download a .deb package, you can install it using a package manager such as dpkg. For example:
-#####
-    sudo dpkg -i webstorm-*.deb
-#####
-    sudo apt-get install -f # to install dependencies
-
-- If you download a .tar.gz package, you can extract it and run WebStorm from the extracted
-directory
 ### Install MongoDB
 ***1. Windows***
 - There is a detailed tutorial on the MongoDB website - [install-mongodb-on-windows](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/)
@@ -142,9 +118,10 @@ directory
 6. Navigate to **plants** collection to view data
 
 ### Run the code
-1. In Webstorm, open the code file
-2. Navigate to ***plantapp/solution/package.json***
-3. Click play/run button on next to "**start**"
+1. Open a terminal
+2. Navigate to the solution using **cd \plantapp\solution**
+3. Run **npm install** to ensure everything is installed correctly
+4. Run by using **npm run start**
 
 ### Run the website on browser
 1. Open a web browser
