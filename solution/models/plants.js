@@ -17,11 +17,8 @@ let PlantSchema = new mongoose.Schema(
         sun_exposure: { type: String, required: false, max: 10 },
         sun_char: { type: String, required: false, max: 30 },
         plant_colour: { type: String, required: true, max: 40 },
-<<<<<<< HEAD
-=======
         status: {type:String, required: true, max: 20},
         // Define the img field with type String
->>>>>>> origin/lara
         img: { type: String }
     }
 );
