@@ -21,6 +21,7 @@ exports.create = function (userData, filePath) {
         plant_colour: userData.plant_colour,
         status: userData.status,
         img: filePath,
+        comments: userData.comments,
     });
 
     // Save the plant to the databases and handle success or failure

@@ -22,7 +22,8 @@ let PlantSchema = new Schema(
         plant_colour: { type: String, required: true, max: 40 },
         status: {type:String, required: true, max: 20},
         // Define the img field with type String
-        img: { type: String }
+        img: { type: String },
+        comments: {type: Object, required: false}
     }
 );
 

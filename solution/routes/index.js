@@ -40,11 +40,11 @@ router.get('/', async (req, res) => {
               OPTIONAL { ?uri dbp:genus ?sci_name }
               ?uri rdfs:comment ?description .
               FILTER (lang(?commonName) = 'en')
+              FILTER (lang(?description) = 'en')
               
-              FILTER ((CONTAINS(?description, "common")) && 
-                      (CONTAINS(LCASE(?description), LCASE("${plant_namee}"))) ||
-                      (CONTAINS(LCASE(?description), LCASE("${plant_namee}"))) 
-                      )
+              FILTER (
+              (CONTAINS(LCASE(?description), LCASE(" ${plant_namee.trim()} "))) 
+              )
           
         }
         LIMIT 1`;
