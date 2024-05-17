@@ -28,6 +28,10 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get("/username", (req, res) => {
+  res.render("username", { title: "Welcome Page" });
+});
+
 
 router.post('/filter', async (req, res) => {
   try {
@@ -42,15 +46,11 @@ router.post('/filter', async (req, res) => {
 });
 
 
-router.get('/addplant', function(req, res) {
+router.get('/addplant', (req, res) => {
   res.render('addPlant', { title: 'Add Plant' });
 });
 
-router.get("/test", (req, res) => {
-  res.render("testing", { title: "Testing Page" });
-});
-
-router.post('/add', upload.single('plantImg'), function (req, res) {
+router.post('/add', upload.single('plantImg'), (req, res) => {
 	let userData = req.body;
 	let filePath = req.file.path;
 	let result = plants.create(userData, filePath);
