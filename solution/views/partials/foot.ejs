@@ -76,6 +76,9 @@
   });
 </script>
 <% } %>
+<% if (title === "Welcome Page") { %>
+<script src="/javascripts/username.js"></script>
+<% } %>
 <script>
   if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js', { scope: '/' });

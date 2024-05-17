@@ -16,9 +16,13 @@ const upload = multer({ storage: storage });
 
 const dbPlants = plants.getAll();
 
+/* Get welcome page */
+router.get("/", (req, res) => {
+  res.render("index", { title: "Welcome Page" });
+});
 
 /* GET home page. */
-router.get('/', async (req, res) => {
+router.get('/feed', async (req, res) => {
     // get all plants created
     let dbPlants= await plants.getAll();
 
@@ -79,16 +83,12 @@ router.get('/', async (req, res) => {
 
     Promise.all(fetchPromises)
         .then(() => {
-            res.render("index", { title: "Plant App", items: dbPlants });
+            res.render("feed", { title: "Plant App", items: dbPlants });
         })
         .catch(error => {
             console.error("Error gathering data:", error);
-            res.render("index", { title: "Plant App", items: [] });
+            res.render("feed", { title: "Plant App", items: [] });
         });
-});
-
-router.get("/username", (req, res) => {
-  res.render("username", { title: "Welcome Page" });
 });
 
 
