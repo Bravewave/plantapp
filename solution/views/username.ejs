@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <div class="username-container">
+    <h1>Enter Your Username</h1>
+    <form id="username-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('username-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+
+      const request = indexedDB.open('ChatApp', 1);
+      request.onupgradeneeded = function() {
+        const db = request.result;
+        db.createObjectStore('user', { keyPath: 'id' });
+      };
+      request.onsuccess = function() {
+        const db = request.result;
+        const transaction = db.transaction('user', 'readwrite');
+        const store = transaction.objectStore('user');
+        store.put({ id: 1, username: username });
+
+        transaction.oncomplete = function() {
+          window.location.href = '/';
+        };
+      };
+    });
+  </script>
+</body>
+</html>
