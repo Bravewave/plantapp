@@ -13,8 +13,7 @@ exports.create = function (userData, filePath) {
         plant_desc: userData.plant_desc,
         plant_height: userData.plant_height,
         plant_spread: userData.plant_spread,
-        db_pedia_link: userData.db_pedia_link,
-        flowers: !!userData.flowers, 
+        flowers: !!userData.flowers,
         leaves: !!userData.leaves, 
         fruits_seeds: !!userData.fruits_seeds, 
         sun_exposure: !!userData.sun_exposure, 
@@ -22,6 +21,7 @@ exports.create = function (userData, filePath) {
         plant_colour: userData.plant_colour,
         status: userData.status,
         img: filePath,
+        comments: userData.comments,
     });
 
     // Save the plant to the databases and handle success or failure
@@ -78,5 +78,27 @@ exports.getFiltered = async (filters, sortOrder) => {
     } catch (error) {
         console.error(error);
         return [];
+    }
+};
+
+exports.getById = async function (id) {
+    try {
+        return await plantModel.findById(id).exec();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+exports.update = async function (id, userData, filePath) {
+    try {
+        const updateData = { ...userData };
+        if (filePath) {
+            updateData.plantImg = filePath;
+        }
+        return await plantModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
+    } catch (error) {
+        console.error(error);
+        throw error;
     }
 };
