@@ -1,10 +1,7 @@
 let mongoose = require('mongoose');
 
-// Get the Schema class from mongoose
-let Schema = mongoose.Schema;
-
 // Define the schema for the Plant model
-let PlantSchema = new Schema(
+let PlantSchema = new mongoose.Schema(
     {
         user_name: { type: String, required: true, max: 100 },
         plant_name: { type: String, required: false, max: 100 },

@@ -1,16 +1,83 @@
-      </main>
-    </div>
-    <script src="/javascripts/nav.js"></script>
-    <% if (title === "Add Plant") { %>
-    <script src="/javascripts/addPlant.js" defer></script>
-    <% } %>
-    <% if (title === "Plant App") { %>
-      <script src="/javascripts/dialog.js"></script>
-      <% } %>
-    <script>
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js', { scope: '/' });
-      }
-    </script>
-  </body>
-</html>
+<script src="/javascripts/nav.js"></script>
+<% if (title === "Add Plant") { %>
+<script src="/javascripts/addPlant.js" defer></script>
+<% } %>
+<% if (title === "Plant App") { %>
+<script src="/javascripts/dialog.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#filter-form').submit(function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      $.ajax({
+        type: 'POST',
+        url: '/filter',
+        data: $(this).serialize(), 
+        success: function(response) {
+          // Update the content of the column-feed with the new items
+          $('#column-feed').html('');
+          if (response.items.length > 0) {
+            response.items.forEach((plant, index) => {
+              let plantHTML = `
+                <div class="block" data-dialog-id="${index}">
+                  <div class="image-section">
+                    <img src="/${plant.img}" alt="Image ${index + 1}">
+                  </div>
+                  <div class="text-section">
+                    <p><span class="attribute">Uploaded by: </span>${plant.user_name}</p>
+                    <p><span class="attribute">Date and time: </span>${new Date(plant.dts).toLocaleString()}</p>
+                    <p><span class="attribute">Plant name: </span>${plant.plant_name}</p>
+                    <p><span class="attribute">Location: </span>${plant.lat}, ${plant.lon}</p>
+                    <p><span class="attribute">Description: </span>${plant.plant_desc}</p>
+                  </div>
+                  <dialog id="${index}">
+                    <div class="dialog-left">
+                      <div class="image-section">
+                        <img src="/${plant.img}" alt="Image ${index + 1}">
+                      </div>
+                      <h1>${plant.plant_name}</h1>
+                      <h3>${plant.user_name}</h3>
+                      <p><span class="attribute">Date and time: </span>${new Date(plant.dts).toLocaleString()}</p>
+                      <p><span class="attribute">Plant name: </span>${plant.plant_name}</p>
+                      <p><span class="attribute">Location: </span>${plant.lat}, ${plant.lon}</p>
+                      <p><span class="attribute">Description: </span>${plant.plant_desc}</p>
+                      <p><span class="attribute">Height: </span>${plant.plant_height} m</p>
+                      <p><span class="attribute">Spread: </span>${plant.plant_spread} m</p>
+                      <p><span class="attribute">DBPedia: </span><a href="${plant.db_pedia_link}">${plant.db_pedia_link}</a></p>
+                      <p><span class="attribute">Flowers: </span>${plant.flowers}</p>
+                      <p><span class="attribute">Leaves: </span>${plant.leaves}</p>
+                      <p><span class="attribute">Fruits/Seeds: </span>${plant.fruits_seeds}</p>
+                      <p><span class="attribute">Sun Exposure: </span>${plant.sun_exposure}</p>
+                      <p><span class="attribute">Characteristics: </span>${plant.sun_char}</p>
+                      <p><span class="attribute">Plant Colour: </span>${plant.plant_colour}</p>
+                    </div>
+                    <div class="dialog-right">
+                      <h2>Live Chat</h2>
+                      <p>Chat goes here</p>
+                    </div>
+                    <button class="close">Close</button>
+                  </dialog>
+                </div>
+              `;
+              $('#column-feed').append(plantHTML);
+            });
+          } else {
+            $('#column-feed').html('<h1 class="no-posts">No Posts Found!</h1>');
+          }
+          // Reattach dialog event listeners
+          attachDialogEvents();
+        },
+        error: function(error) {
+          console.error('Error:', error);
+        }
+      });
+    });
+  });
+</script>
+<% } %>
+<script>
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' });
+  }
+</script>

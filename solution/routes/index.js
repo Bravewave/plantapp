@@ -5,12 +5,12 @@ const multer = require('multer');
 
 // storage defines the storage options to be used for file upload with multer
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images/uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + "-" + file.originalname);
-    }
+  destination: (req, file, cb) => {
+    cb(null, 'public/images/uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+}
 });
 const upload = multer({ storage: storage });
 
@@ -88,20 +88,20 @@ router.get('/', async (req, res) => {
 });
 
 router.get("/username", (req, res) => {
-    res.render("username", { title: "Welcome Page" });
+  res.render("username", { title: "Welcome Page" });
 });
 
 
 router.post('/filter', async (req, res) => {
-    try {
-        const { sort_order = 'newest', traits } = req.body;
-        const filters = Array.isArray(traits) ? traits : (traits ? [traits] : []);
-        const filteredPlants = await plants.getFiltered(filters, sort_order);
-        res.json({ items: filteredPlants }); // Send JSON response for AJAX
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ items: [] });
-    }
+  try {
+    const { sort_order = 'newest', traits } = req.body;
+    const filters = Array.isArray(traits) ? traits : (traits ? [traits] : []);
+    const filteredPlants = await plants.getFiltered(filters, sort_order);
+    res.json({ items: filteredPlants }); // Send JSON response for AJAX
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ items: [] });
+  }
 });
 
 // Route to render the edit plant form
@@ -135,16 +135,16 @@ router.post('/edit/:id', upload.single('plantImg'), async (req, res) => {
 
 
 router.get("/addplant", (req, res) => {
-    res.render("addPlant", { title: "Add Plant" });
+  res.render("addPlant", { title: "Add Plant" });
 });
 
 router.post('/add', upload.single('plantImg'), function (req, res) {
-    let userData = req.body;
-    let filePath = req.file.path;
-    let result = plants.create(userData, filePath);
-    console.log(result);
+	let userData = req.body;
+	let filePath = req.file.path;
+	let result = plants.create(userData, filePath);
+	console.log(result);
 
-    res.redirect('/');
+  res.redirect('/');
 });
 
 module.exports = router;
